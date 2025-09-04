@@ -1,0 +1,4 @@
+res://game.tscn
+res://player.gd
+res://player.tscn
+res://tile_map_layer.gd
