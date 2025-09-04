@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch7d80m6qyahg"]
+
+[ext_resource type="Texture2D" uid="uid://5uoxpqc54utp" path="res://TileBase.png" id="1_e2o6t"]
+[ext_resource type="Script" path="res://tile_map_layer.gd" id="2_feb5d"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
+texture = ExtResource("1_e2o6t")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7jktm"]
+sources/0 = SubResource("TileSetAtlasSource_fc0e3")
+
+[node name="Game" type="Node"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+position = Vector2(100, 100)
+tile_set = SubResource("TileSet_7jktm")
+script = ExtResource("2_feb5d")
