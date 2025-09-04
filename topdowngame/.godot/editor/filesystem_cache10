@@ -1,6 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1756996742
-game.tscn::PackedScene::5330465776211732244::1756996743::0::1::::<><><>0<>0<><>::uid://5uoxpqc54utp::::res://TileBase.png<>uid://goamy4p62v6g::::res://tile_map_layer.gd
+::res://::1757007983
+game.tscn::PackedScene::5330465776211732244::1757007654::0::1::::<><><>0<>0<><>::uid://5uoxpqc54utp::::res://TileBase.png<>uid://goamy4p62v6g::::res://tile_map_layer.gd<>uid://bevt2bnt7gydc::::res://player.tscn
 icon.svg::CompressedTexture2D/CompressedTexture2D::5060383974544500073::1756996678::1756996727::1::::<><><>0<>0<>9250b0dc89ac91f3cfb7c58669904eef<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+player.gd::GDScript::2335771688600838269::1757007070::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player.tscn::PackedScene::2711729903890587928::1757007267::0::1::::<><><>0<>0<><>::uid://8jp23engpk74::::res://player.gd<>uid://cedj1xfae4cwn::::res://icon.svg
 TileBase.png::CompressedTexture2D/CompressedTexture2D::2147844788079957485::1756996678::1756996727::1::::<><><>0<>0<>d532b0149c8df94ba61e42b547a3c4a4<>res://.godot/imported/TileBase.png-98008f4ca785abc0a856f9f702c5ee61.ctex::
-tile_map_layer.gd::GDScript/GDScript::450057085995665760::1756996679::0::1::::<>TileMapLayer<><>0<>0<><>::
+tile_map_layer.gd::GDScript::450057085995665760::1757007359::0::1::::<>TileMapLayer<><>0<>1<><>::
