@@ -44,4 +44,4 @@ Backward={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.112102, 0.357673, 0.147926, 1)
+environment/defaults/default_clear_color=Color(0.189195, 0.76009, 0.720782, 1)

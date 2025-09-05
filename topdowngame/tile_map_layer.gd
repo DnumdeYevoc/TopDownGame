@@ -32,7 +32,7 @@ func generate_buildings():
 			var pos = Vector2(x,y)
 			alt = round(noise.get_noise_2dv(pos)*100.0)
 			if alt > threshold:
-				set_cell(pos, 0, Vector2(1,1))
+				set_cell(pos, 0, Vector2(2,1))
 				
 	for x in load_range.x:
 		for y in load_range.y:
@@ -45,15 +45,13 @@ func generate_buildings():
 											get_cell_source_id(pos+Vector2i(1,0)), 
 											get_cell_source_id(pos+Vector2i(-1,0))]
 				#make atlas
-				var atlas = Vector2i(1,1)
-				if surrounding[0] != cell_id or surrounding[1] != cell_id or surrounding[2] != cell_id or surrounding[3] != cell_id:
-					#up
-					if surrounding[0] != cell_id:
-						atlas += Vector2i(0,1)
-					if surrounding[1] != cell_id:
-						atlas += Vector2i(0,-1)
-					if surrounding[2] != cell_id:
-						atlas += Vector2i(1,0)
-					if surrounding[3] != cell_id:
-						atlas += Vector2i(-1,0)
+				var atlas = Vector2i(2,1)
+				if surrounding[0] == cell_id:
+					atlas += Vector2i(0,2)
+				if surrounding[1] == cell_id:
+					atlas += Vector2i(0,-1)
+				if surrounding[2] == cell_id:
+					atlas += Vector2i(1,0)
+				if surrounding[3] == cell_id:
+					atlas += Vector2i(-2,0)
 				set_cell(pos, cell_id, atlas)
