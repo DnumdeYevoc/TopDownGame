@@ -1,32 +1,36 @@
 extends CharacterBody2D
-@export var speed = 50000
-@export var acc = 500
+@export var speed = 2500
+@export var acc = 1000
 var speed_cap = 200000
-@export var trail_length : int
+var decel := false
 @onready var trail: Line2D = $Trail
 var d = Vector2(0,0)
 func _physics_process(delta: float) -> void:
-	trail.length = trail_length
-	#basic movement
-
-	'''
-	if Input.is_action_pressed("Forward"):
-		d.y -= 1
-	if Input.is_action_pressed("Backward"):
-		d.y += 1
-	if Input.is_action_pressed("Right"):
-		d.x += 1
-	if Input.is_action_pressed("Left"):
-		d.x -= 1'''
-	#get_global_mouse_position()
+	#movement
+	d=(get_global_mouse_position()-global_position).normalized()
+	#acceleration
 	if Input.is_action_pressed("Left_Click"):
-		d=(get_global_mouse_position()-global_position).normalized()
 		if speed < speed_cap:
 			speed +=acc
+		#deceleration
+	elif Input.is_action_pressed("Right_Click"):
+		decel = true
 	else:
-		speed = 50000
-		d = Vector2(0,0)
-	if d<= Vector2(0.01,0.01)and d>= Vector2(-0.01,-0.01):
-		trail.remove_point(0)
+		decel = false
+	if decel:
+		speed -= acc*2
+		if speed<= 2500:
+			decel = false
+	#slow down time
+	if Input.is_action_pressed("Shift"):
+		pass
+	
+	#trail
+	if d== Vector2(0,0):
+		decel = false
+		if trail.get_point_count()>0:
+			trail.remove_point(0)
+	
+	#update speed
 	velocity = d*delta*speed
 	move_and_slide()

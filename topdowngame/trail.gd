@@ -1,15 +1,21 @@
 extends Line2D
 
-var length = 10
+var length : int
 var point = Vector2()
 var previous_point = Vector2()
+var player_speed : int
 
 func _process(delta: float) -> void:
 	global_position = Vector2(0,0)
 	global_rotation = 0
+	player_speed = get_parent().speed
 	point = get_parent().global_position
-	length = get_parent().speed*0.0001
-	
+	length = abs(player_speed)**1.5*0.0000003
+	width = length
+	if player_speed<0:
+		default_color = Color8(180,0,120,150)
+	else:
+		default_color = Color8(210,250,0,150)
 	if previous_point.distance_to(point)>50:
 		add_point(point)
 		previous_point = point 

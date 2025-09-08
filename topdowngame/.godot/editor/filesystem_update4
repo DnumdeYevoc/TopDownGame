@@ -1,6 +1,5 @@
 res://player.tscn
 res://game.tscn
-res://tile_map_layer.gd
-res://fps.gd
-res://player.gd
 res://trail.gd
+res://player.gd
+res://tile_map_layer.gd

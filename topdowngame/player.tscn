@@ -1,14 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bevt2bnt7gydc"]
+[gd_scene load_steps=6 format=3 uid="uid://bevt2bnt7gydc"]
 
 [ext_resource type="Script" uid="uid://8jp23engpk74" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://c8u4roiv541e2" path="res://Man.png" id="2_i3pqv"]
-[ext_resource type="Script" uid="uid://3algkho6e2ym" path="res://fps.gd" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://behb8pl72t73c" path="res://trail.gd" id="4_hqtel"]
 
 [sub_resource type="Curve" id="Curve_sweqy"]
 _limits = [0.0, 1.0, 0.0, 5.0]
-_data = [Vector2(0, 0), 0.0, 0.357476, 0, 0, Vector2(0.558511, 0.820225), 0.132022, 0.132022, 0, 0, Vector2(5, 1), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0.617978), 0.0, 0.0869795, 0, 0, Vector2(5, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 7.0
@@ -19,9 +18,8 @@ script = ExtResource("1_4flbx")
 
 [node name="Trail" type="Line2D" parent="."]
 points = PackedVector2Array(1, -5)
-width = 30.0
 width_curve = SubResource("Curve_sweqy")
-default_color = Color(1, 0.917647, 0, 0.615686)
+default_color = Color(0.839216, 0.854902, 0.247059, 0.866667)
 script = ExtResource("4_hqtel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -33,12 +31,3 @@ texture = ExtResource("2_i3pqv")
 position = Vector2(-1, 10)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_onrkg")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="FPS" type="Label" parent="."]
-offset_left = -460.0
-offset_top = -347.0
-offset_right = -420.0
-offset_bottom = -324.0
-script = ExtResource("3_i3pqv")
