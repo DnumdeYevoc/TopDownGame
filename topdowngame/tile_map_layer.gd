@@ -26,7 +26,7 @@ var ref_point = Vector2i(0,0)
 
 func _ready() -> void:
 	noise.seed = world_seed
-	noise.frequency = 0.02
+	noise.frequency = 0.03
 	noise.fractal_type = FastNoiseLite.FRACTAL_RIDGED
 	noise.fractal_weighted_strength = 1
 	ref_point = player.position

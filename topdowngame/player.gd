@@ -1,35 +1,45 @@
 extends CharacterBody2D
-@export var speed = 2500
-@export var acc = 1000
+@export var speed : int
+@export var walking_speed := 5000.00
+@export var acc = 500
 var speed_cap = 200000
-var decel := false
 @onready var trail: Line2D = $Trail
 var d = Vector2(0,0)
+func _input(event: InputEvent) -> void:
+	if speed != 0:
+		if Engine.time_scale > sqrt(walking_speed/abs(speed)):
+			if Input.is_action_pressed("Shift"):
+				Engine.time_scale -= 0.03
+				print(sqrt(walking_speed/abs(speed)))
+		if Input.is_action_just_released("Shift"):
+			Engine.time_scale = 1
+		
 func _physics_process(delta: float) -> void:
 	#movement
 	d=(get_global_mouse_position()-global_position).normalized()
 	#acceleration
+	if Input.is_action_just_pressed("Left_Click"):
+		if speed>= -walking_speed and speed<=0:
+			speed = walking_speed
 	if Input.is_action_pressed("Left_Click"):
 		if speed < speed_cap:
-			speed +=acc
-		#deceleration
+			if speed< -walking_speed or  speed>0:
+				speed +=acc*Engine.time_scale
+			else:
+				speed = 0
+	#deceleration
 	elif Input.is_action_pressed("Right_Click"):
-		decel = true
-	else:
-		decel = false
-	if decel:
-		speed -= acc*2
-		if speed<= 2500:
-			decel = false
+		if speed>-2*speed_cap:
+			if speed> walking_speed or  speed<0:
+				speed -=3*acc*Engine.time_scale
+			else:
+				speed = walking_speed
+	if Input.is_action_just_pressed("Right_Click"):
+		if speed<= walking_speed and speed>=0:
+			speed = -walking_speed
+
+		
 	#slow down time
-	if Input.is_action_pressed("Shift"):
-		pass
-	
-	#trail
-	if d== Vector2(0,0):
-		decel = false
-		if trail.get_point_count()>0:
-			trail.remove_point(0)
 	
 	#update speed
 	velocity = d*delta*speed

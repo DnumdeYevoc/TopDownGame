@@ -11,11 +11,12 @@ func _process(delta: float) -> void:
 	player_speed = get_parent().speed
 	point = get_parent().global_position
 	length = abs(player_speed)**1.5*0.0000003
-	width = length
-	if player_speed<0:
+	width = length/2
+	if player_speed<1000:
 		default_color = Color8(180,0,120,150)
-	else:
+	elif player_speed>-1000:
 		default_color = Color8(210,250,0,150)
+		
 	if previous_point.distance_to(point)>50:
 		add_point(point)
 		previous_point = point 
