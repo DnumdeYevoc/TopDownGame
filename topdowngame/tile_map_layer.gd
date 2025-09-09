@@ -7,7 +7,7 @@ var random = RandomNumberGenerator.new()
 
 @export var world_seed := 0
 @export var noise = FastNoiseLite.new()
-@export var threshold :int= 0
+@export var threshold :int
 @export var render_dis = Vector2i(50, 38)
 @export var randomise_seed :bool = false:
 	set(new):
@@ -21,19 +21,26 @@ var random = RandomNumberGenerator.new()
 		reload = new
 		generate_tiles(render_dis)
 		reload = false
+
 var alt : float
 var ref_point = Vector2i(0,0)
 
 func _ready() -> void:
 	noise.seed = world_seed
-	noise.frequency = 0.03
+	noise.frequency = 0.01
 	noise.fractal_type = FastNoiseLite.FRACTAL_RIDGED
 	noise.fractal_weighted_strength = 1
 	ref_point = player.position
 	generate_tiles(render_dis)
 	
 func _physics_process(delta: float) -> void:
+	if get_cell_source_id(player.position/32)!= -1:
+		collision_enabled = false
+	else:
+		collision_enabled = true
 	update_tiles(render_dis)
+	#if player is on top of you
+
 func generate_tiles(size):
 	clear()
 	for x in size.x:
@@ -42,7 +49,7 @@ func generate_tiles(size):
 		
 			var pos = Vector2(int(player.position.x)/32-size.x/2+x,int(player.position.y)/32-size.y/2+y)
 			alt = round(noise.get_noise_2dv(pos)*100.0)
-			if alt - pos.y/4 > threshold:
+			if alt > threshold:
 				set_cell(pos, 0, Vector2(2,1))
 				
 	for x in size.x:
@@ -77,7 +84,7 @@ func update_tiles(size):
 				#if its not already loaded
 				if get_cell_source_id(pos) != 1:
 					alt = round(noise.get_noise_2dv(pos)*100.0)
-					if alt -pos.y/4 > threshold:
+					if alt > threshold:
 						set_cell(pos, 0, Vector2(1,2))
 		for x in size.x:
 			for y in size.y:

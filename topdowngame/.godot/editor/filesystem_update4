@@ -1,5 +1,5 @@
 res://player.tscn
 res://game.tscn
-res://trail.gd
-res://player.gd
 res://tile_map_layer.gd
+res://player.gd
+res://trail.gd
