@@ -1,43 +1,16 @@
 @tool
 extends TileMapLayer
 
-var random = RandomNumberGenerator.new()
-
-@onready var player = $"../Player"
-
-@export var world_seed := 0
-@export var noise = FastNoiseLite.new()
+@onready var player : Node2D
+@export var noise : FastNoiseLite
 @export var threshold :int
-@export var render_dis = Vector2i(50, 38)
-@export var randomise_seed :bool = false:
-	set(new):
-		randomise_seed = new
-		world_seed = random.randi_range(0,99999999)
-		noise.seed = world_seed
-		randomise_seed = false
+@export var render_dis : Vector2i
+@export var refresh_dis : int
 @export var height := 10
-@export var reload :bool = false:
-	set(new):
-		reload = new
-		generate_tiles(render_dis)
-		reload = false
-
 var alt : float
 var ref_point = Vector2i(0,0)
-
-func _ready() -> void:
-	noise.seed = world_seed
-	noise.frequency = 0.01
-	noise.fractal_type = FastNoiseLite.FRACTAL_RIDGED
-	noise.fractal_weighted_strength = 1
-	ref_point = player.position
-	generate_tiles(render_dis)
 	
 func _physics_process(delta: float) -> void:
-	if get_cell_source_id(player.position/32)!= -1:
-		collision_enabled = false
-	else:
-		collision_enabled = true
 	update_tiles(render_dis)
 	#if player is on top of you
 
@@ -46,7 +19,6 @@ func generate_tiles(size):
 	for x in size.x:
 		for y in size.y:
 			#make different so that player doesnt lag behind
-		
 			var pos = Vector2(int(player.position.x)/32-size.x/2+x,int(player.position.y)/32-size.y/2+y)
 			alt = round(noise.get_noise_2dv(pos)*100.0)
 			if alt > threshold:
@@ -75,7 +47,7 @@ func generate_tiles(size):
 					atlas.x += -2
 				set_cell(pos, cell_id, atlas)
 func update_tiles(size):
-	if int(player.position.distance_to(ref_point))/32> 10:
+	if int(player.position.distance_to(ref_point))/32> refresh_dis*32:
 		ref_point = player.position
 		clear()
 		for x in size.x:

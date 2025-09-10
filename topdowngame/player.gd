@@ -6,6 +6,7 @@ var speed_cap = 200000
 @onready var trail: Line2D = $Trail
 var d = Vector2(0,0)
 func _input(event: InputEvent) -> void:
+	#slowdown time
 	if speed != 0:
 		if Engine.time_scale > sqrt(walking_speed/abs(speed)):
 			if Input.is_action_pressed("Shift"):
@@ -38,9 +39,6 @@ func _physics_process(delta: float) -> void:
 		if speed<= walking_speed and speed>=0:
 			speed = -walking_speed
 
-		
-	#slow down time
-	
 	#update speed
 	velocity = d*delta*speed
 	move_and_slide()
