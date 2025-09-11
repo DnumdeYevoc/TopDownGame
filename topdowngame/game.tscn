@@ -15,10 +15,8 @@ script = ExtResource("1_fc0e3")
 
 [node name="TileLayerManager" type="Node2D" parent="."]
 script = ExtResource("2_fc0e3")
-render_dis = Vector2i(75, 50)
 noise = SubResource("FastNoiseLite_fc0e3")
 world_seed = 64050848
-refresh_dis = 0
 
 [node name="Player" parent="." instance=ExtResource("3_feb5d")]
 
