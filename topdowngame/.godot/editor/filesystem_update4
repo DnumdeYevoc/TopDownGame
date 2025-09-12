@@ -1,7 +1,7 @@
 res://player.tscn
 res://game.gdshader
-res://world_layer.tscn
-res://game.tscn
 res://tile_map_layer.gd
+res://game.tscn
+res://world_layer.tscn
+res://tile_map_layer.tscn
 res://tile_layer_manager.gd
-res://Chunk.tscn

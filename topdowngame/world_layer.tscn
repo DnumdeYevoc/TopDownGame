@@ -68,4 +68,3 @@ tile_set = SubResource("TileSet_4x4oh")
 collision_enabled = false
 script = ExtResource("3_jwyeq")
 noise = SubResource("FastNoiseLite_k4qop")
-render_dis = Vector2i(60, 50)
