@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch7d80m6qyahg"]
+[gd_scene load_steps=9 format=3 uid="uid://ch7d80m6qyahg"]
 
 [ext_resource type="Script" uid="uid://dfb5fqdpa5otd" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="Script" uid="uid://cbpcn7mp2kfeg" path="res://tile_layer_manager.gd" id="2_fc0e3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://3algkho6e2ym" path="res://fps.gd" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://b5yy1t8dekydf" path="res://enemy.tscn" id="5_ryrav"]
 [ext_resource type="Resource" uid="uid://ef3ecd6vk814" path="res://enemy_template.tres" id="6_eow3j"]
+[ext_resource type="Script" uid="uid://ddvbqgh2vm2ar" path="res://enemy_manager.gd" id="7_eow3j"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
 seed = 64050848
@@ -33,3 +34,6 @@ script = ExtResource("5_7jktm")
 
 [node name="Enemy" parent="." instance=ExtResource("5_ryrav")]
 enemy_type = ExtResource("6_eow3j")
+
+[node name="EnemyManager" type="Node2D" parent="."]
+script = ExtResource("7_eow3j")

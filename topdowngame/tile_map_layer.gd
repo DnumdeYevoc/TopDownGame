@@ -16,6 +16,9 @@ var layer_amount : int
 func _ready() -> void:
 	update_tiles(chunk_size)
 	
+
+	if height_index<3.0:
+			modulate *= (float(height_index)+1.0)/6.0
 func _physics_process(delta: float) -> void:
 	'''var current_rel_tile = parent.player.position / (chunk_size) -floor(position / (chunk_size))
 	print(current_rel_tile)
@@ -52,10 +55,18 @@ func update_tiles(size):
 						else:
 							atlas = get_cell_atlas_coords(pos)
 						set_cell(pos, 0, atlas)
-			if height_index ==0:
-				collision_enabled = true
-			else:
-				collision_enabled = false
+			#water collision
+		if height_index ==0 :
+				if player.speed >= 100000:
+					collision_enabled = false
+				else:
+					collision_enabled = true
+		else:
+			collision_enabled = false
+			
+		#shader stuff
+
+
 func _process(delta: float) -> void:
 	var dist = float(render_dis) /2.0
 	var player_chunk_pos = parent.player.position / (chunk_size*32)

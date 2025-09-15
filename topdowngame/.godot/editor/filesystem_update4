@@ -8,3 +8,4 @@ res://enemy.gd
 res://player.gd
 res://enemy.tscn
 res://enemy_template.tres
+res://enemy_manager.gd
