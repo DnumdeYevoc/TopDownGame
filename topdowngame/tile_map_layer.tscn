@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cifhmyn2tleao"]
+[gd_scene load_steps=8 format=4 uid="uid://cifhmyn2tleao"]
 
 [ext_resource type="Shader" uid="uid://4drk6dfn5luc" path="res://game.gdshader" id="1_uuaxm"]
 [ext_resource type="Texture2D" uid="uid://cqsa6pofc53r" path="res://BigGrass.png" id="2_c3an2"]
@@ -60,8 +60,6 @@ domain_warp_amplitude = 200.0
 domain_warp_frequency = 0.02
 domain_warp_fractal_gain = 0.001
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uuaxm"]
-
 [node name="WorldLayer" type="TileMapLayer"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_2wbt3")
@@ -70,7 +68,3 @@ tile_set = SubResource("TileSet_4x4oh")
 collision_enabled = false
 script = ExtResource("3_vjcy3")
 noise = SubResource("FastNoiseLite_k4qop")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(11, 10)
-shape = SubResource("RectangleShape2D_uuaxm")

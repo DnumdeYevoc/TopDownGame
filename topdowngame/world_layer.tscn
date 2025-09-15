@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://qogj5vnetlo2"]
+[gd_scene load_steps=8 format=4 uid="uid://sgvg830h18qa"]
 
 [ext_resource type="Shader" uid="uid://4drk6dfn5luc" path="res://game.gdshader" id="1_tbd5q"]
 [ext_resource type="Texture2D" uid="uid://cqsa6pofc53r" path="res://BigGrass.png" id="2_iik26"]

@@ -1,6 +1,10 @@
 res://player.tscn
 res://game.gdshader
+res://tile_layer_manager.gd
+res://tile_map_layer.gd
 res://game.tscn
 res://tile_map_layer.tscn
-res://tile_map_layer.gd
-res://tile_layer_manager.gd
+res://enemy.gd
+res://player.gd
+res://enemy.tscn
+res://enemy_template.tres

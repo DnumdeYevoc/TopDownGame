@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ef3ecd6vk814"]
+
+[sub_resource type="GDScript" id="GDScript_6ri0y"]
+script/source = "extends Resource
+
+@export var speed :int = 2000
+"
+
+[resource]
+script = SubResource("GDScript_6ri0y")
+speed = 2000

@@ -11,8 +11,6 @@ func _input(event: InputEvent) -> void:
 		if Engine.time_scale > sqrt(walking_speed/abs(speed)):
 			if Input.is_action_pressed("Shift"):
 				Engine.time_scale -= 0.03
-				print(sqrt(walking_speed/abs(speed)))
-		if Input.is_action_just_released("Shift"):
 			Engine.time_scale = 1
 		
 func _physics_process(delta: float) -> void:
