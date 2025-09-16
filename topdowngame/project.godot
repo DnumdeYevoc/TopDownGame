@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1000
-window/size/viewport_height=750
+window/size/viewport_width=1200
+window/size/viewport_height=1000
 window/stretch/mode="viewport"
 
 [input]
@@ -65,4 +65,4 @@ Shift={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.189195, 0.76009, 0.720782, 1)
+environment/defaults/default_clear_color=Color(7.01746e-05, 0.155335, 0.515594, 1)
