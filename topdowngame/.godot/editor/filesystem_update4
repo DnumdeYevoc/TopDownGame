@@ -1,7 +1,9 @@
 res://player.tscn
 res://enemy_template.tres
-res://game.tscn
 res://tile_map_layer.tscn
+res://tile_screen.tscn
+res://game.tscn
 res://enemy.tscn
+res://enemy.gd
 res://enemy_template.gd
 res://enemy_manager.gd

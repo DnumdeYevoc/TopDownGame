@@ -1,8 +1,12 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://ef3ecd6vk814"]
 
-[ext_resource type="Script" uid="uid://cyd23my1mnyai" path="res://enemy_template.gd" id="1_yumcj"]
+[ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://enemy_template.gd" id="1_yumcj"]
 
 [resource]
 script = ExtResource("1_yumcj")
-speed = 2000
+speed = 200
 spawn_time = 2
+enemy_index = 0
+max_spawn_amount = 20
+spawn_chance = 5.0
+can_rotate = false

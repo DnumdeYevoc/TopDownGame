@@ -2,7 +2,7 @@ extends CharacterBody2D
 @export var speed : int
 @export var walking_speed := 5000.00
 @export var acc = 500
-var speed_cap = 200000
+var speed_cap = 500000
 @onready var trail: Line2D = $Trail
 var d = Vector2(0,0)
 func _input(event: InputEvent) -> void:
