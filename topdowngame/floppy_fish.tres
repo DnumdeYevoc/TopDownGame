@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bqtqpwhajiuku"]
+
+[ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://enemy_template.gd" id="1_fsvad"]
+[ext_resource type="Texture2D" uid="uid://ckprd7aaa463" path="res://beach.png" id="2_fsvad"]
+
+[resource]
+script = ExtResource("1_fsvad")
+enemy_index = 1
+texture = ExtResource("2_fsvad")
+collision_radius = 10
+speed = 50
+spawn_time = 2
+max_spawn_amount = 2
+spawn_chance = 3.0
+can_rotate = false
+clumping = 40
+crowding = 0

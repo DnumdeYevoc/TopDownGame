@@ -16,7 +16,7 @@ var threshold_rate : int
 var water_level :int = 3
 func _ready() -> void:
 	if height_index<water_level:
-		modulate *= (float(height_index)+1.0)/20.0
+		modulate.a *= 0.05
 		tileset_id = 2
 	elif height_index == water_level:
 		tileset_id = 1

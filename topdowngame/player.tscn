@@ -1,13 +1,99 @@
-[gd_scene load_steps=6 format=3 uid="uid://bevt2bnt7gydc"]
+[gd_scene load_steps=22 format=3 uid="uid://bevt2bnt7gydc"]
 
 [ext_resource type="Script" uid="uid://8jp23engpk74" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://c8u4roiv541e2" path="res://Man.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://h12l27fgn30" path="res://PlayerFrames/DownSlow/pixil-frame-0.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://ctnhrt6c8hqxe" path="res://PlayerFrames/DownSlow/pixil-frame-1.png" id="4_1jxqw"]
 [ext_resource type="Script" uid="uid://behb8pl72t73c" path="res://trail.gd" id="4_hqtel"]
+[ext_resource type="Texture2D" uid="uid://p3xmuhg5wgj1" path="res://PlayerFrames/DownSlow/pixil-frame-2.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://bhayumw2pwhw4" path="res://PlayerFrames/DownSlow/pixil-frame-3.png" id="6_b26j0"]
+[ext_resource type="Texture2D" uid="uid://bl7cnwaxf2e6u" path="res://PlayerFrames/LeftSlow/pixil-frame-0.png" id="7_q13i1"]
+[ext_resource type="Texture2D" uid="uid://c5a7ik6isjq8u" path="res://PlayerFrames/LeftSlow/pixil-frame-1.png" id="8_pylmc"]
+[ext_resource type="Texture2D" uid="uid://3pjvwin2kpbt" path="res://PlayerFrames/LeftSlow/pixil-frame-2.png" id="9_pbfsw"]
+[ext_resource type="Texture2D" uid="uid://dmi6psshyonde" path="res://PlayerFrames/LeftSlow/pixil-frame-3.png" id="10_5tmop"]
+[ext_resource type="Texture2D" uid="uid://bhnwd81xba0d6" path="res://PlayerFrames/RightSlow/pixil-frame-0.png" id="11_7ahtn"]
+[ext_resource type="Texture2D" uid="uid://cra87g2ae48gw" path="res://PlayerFrames/RightSlow/pixil-frame-1.png" id="12_7lmhl"]
+[ext_resource type="Texture2D" uid="uid://c5mv4cal5mwlp" path="res://PlayerFrames/RightSlow/pixil-frame-2.png" id="13_dx0e4"]
+[ext_resource type="Texture2D" uid="uid://dh5t46027iq68" path="res://PlayerFrames/RightSlow/pixil-frame-3.png" id="14_jm5j8"]
+[ext_resource type="Texture2D" uid="uid://cs872svpri2bw" path="res://PlayerFrames/UpSlow/pixil-frame-0.png" id="15_7hik5"]
+[ext_resource type="Texture2D" uid="uid://jlkvrn2t1sqv" path="res://PlayerFrames/UpSlow/pixil-frame-1.png" id="16_qtqh7"]
+[ext_resource type="Texture2D" uid="uid://cgek5i7i284es" path="res://PlayerFrames/UpSlow/pixil-frame-2.png" id="17_2wuci"]
+[ext_resource type="Texture2D" uid="uid://cqhnl7vfugbpq" path="res://PlayerFrames/UpSlow/pixil-frame-3.png" id="18_iruf7"]
 
 [sub_resource type="Curve" id="Curve_sweqy"]
 _limits = [0.0, 1.0, 0.0, 5.0]
 _data = [Vector2(0, 0.617978), 0.0, 0.0869795, 0, 0, Vector2(5, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n7ghd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2hs0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b26j0")
+}],
+"loop": true,
+"name": &"DownSlow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_q13i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pylmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pbfsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5tmop")
+}],
+"loop": true,
+"name": &"LeftSlow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_7ahtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7lmhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dx0e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jm5j8")
+}],
+"loop": true,
+"name": &"RightSlow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_7hik5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qtqh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2wuci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_iruf7")
+}],
+"loop": true,
+"name": &"UpSlow",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 7.0
@@ -22,12 +108,20 @@ width_curve = SubResource("Curve_sweqy")
 default_color = Color(0.839216, 0.854902, 0.247059, 0.866667)
 script = ExtResource("4_hqtel")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -2.98023e-08)
-texture = ExtResource("2_i3pqv")
+sprite_frames = SubResource("SpriteFrames_n7ghd")
+animation = &"LeftSlow"
+autoplay = "DownSlow"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 10)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="TrailCollision" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[connection signal="area_entered" from="TrailCollision" to="." method="_on_trail_collision_area_entered"]
