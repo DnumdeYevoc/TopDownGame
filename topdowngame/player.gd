@@ -6,9 +6,16 @@ var speed_cap = 500000
 @onready var trail: Line2D = $Trail
 @onready var trail_collision: Area2D = $TrailCollision
 @onready var sprite: AnimatedSprite2D = $Sprite2D
+@onready var experience_bar: TextureProgressBar = $ExperienceBar
+@onready var speed_bar: TextureProgressBar = $SpeedBar
+@onready var health_bar: TextureProgressBar = $HealthBar
+
 var decelerate := false
 var d = Vector2(0,0)
 var experience_value := 0
+func _ready() -> void:
+	speed_cap = 100000
+	speed_bar.max_value = speed_cap
 func _input(event: InputEvent) -> void:
 	#slowdown time
 	if speed != 0:
@@ -65,13 +72,21 @@ func _physics_process(delta: float) -> void:
 			else:
 				speed = 0
 	
-	#update speed
+	speed_bar.value = speed
+	#update pos
 	velocity = d*delta*speed
 	move_and_slide()
 
 func experience(value):
 	experience_value += value
-	print(experience_value)
+	experience_bar.value += experience_value
+	if experience_bar.value >= experience_bar.max_value:
+		experience_bar.value -=experience_bar.max_value
+		experience_bar.max_value += 100
+		GLOBALS.level += 1
+		print(GLOBALS.level)
+func level_up():
+	experience_bar  
 func _on_trail_collision_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
 		area.die()

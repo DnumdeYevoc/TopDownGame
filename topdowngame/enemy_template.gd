@@ -1,7 +1,7 @@
 extends Resource
 
 @export var enemy_index : int 
-@export var texture : Texture2D 
+@export var sprite_frames : SpriteFrames 
 @export var collision_radius :int 
 @export var speed :int 
 

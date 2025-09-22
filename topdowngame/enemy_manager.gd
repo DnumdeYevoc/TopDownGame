@@ -9,7 +9,6 @@ var random := RandomNumberGenerator.new()
 @export var floppy_fish : Resource
 
 var timer_done := true
-var level := -1
 var spawn_distance := 1000
 @onready var player := get_parent().get_node("Player")
 var enemy_type_amount:= 2
@@ -25,8 +24,9 @@ func _process(delta: float) -> void:
 	if spawn_distance< 1000:
 		spawn_distance = 1000
 
-	if level == -1:
+	if GLOBALS.level == -1:
 		spawn(enemy_template, enemy_template.enemy_index)
+	if GLOBALS.level== 0:
 		spawn(floppy_fish, floppy_fish.enemy_index)
 
 func spawn(enemy_type, enemy_index) -> void:

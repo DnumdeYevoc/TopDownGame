@@ -1,7 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5yy1t8dekydf"]
+[gd_scene load_steps=10 format=3 uid="uid://b5yy1t8dekydf"]
 
 [ext_resource type="Script" uid="uid://c5ejyucj8mfd0" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://cedj1xfae4cwn" path="res://icon.svg" id="2_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://uwa3pgiowwne" path="res://FloppyFishFrames/pixil-frame-0.png" id="2_wujgv"]
+[ext_resource type="Texture2D" uid="uid://dn2mchqaiieey" path="res://FloppyFishFrames/pixil-frame-1.png" id="3_hb8ge"]
+[ext_resource type="Texture2D" uid="uid://c2whgdhuddlkc" path="res://FloppyFishFrames/pixil-frame-2.png" id="4_e1ltt"]
+[ext_resource type="Texture2D" uid="uid://cblaxnj48mi11" path="res://FloppyFishFrames/pixil-frame-3.png" id="5_dxifv"]
+[ext_resource type="Texture2D" uid="uid://dfuck112jq2m" path="res://FloppyFishFrames/pixil-frame-4.png" id="6_pwjut"]
+[ext_resource type="Texture2D" uid="uid://cw2q1gfjhvck4" path="res://FloppyFishFrames/pixil-frame-5.png" id="7_n0g06"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ar8e5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wujgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb8ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e1ltt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dxifv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pwjut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n0g06")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 
@@ -10,10 +41,11 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_4gyqm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1.90735e-06, 3.57628e-07)
 scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("2_qi2p4")
+sprite_frames = SubResource("SpriteFrames_ar8e5")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4gyqm")

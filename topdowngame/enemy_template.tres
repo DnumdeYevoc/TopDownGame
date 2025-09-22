@@ -1,17 +1,28 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ef3ecd6vk814"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://ef3ecd6vk814"]
 
 [ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://enemy_template.gd" id="1_yumcj"]
 [ext_resource type="Texture2D" uid="uid://cedj1xfae4cwn" path="res://icon.svg" id="2_b4ygo"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_b4ygo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b4ygo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [resource]
 script = ExtResource("1_yumcj")
 enemy_index = 0
-texture = ExtResource("2_b4ygo")
+sprite_frames = SubResource("SpriteFrames_b4ygo")
 collision_radius = 100
 speed = 500
 spawn_time = 5
-max_spawn_amount = 10
-min_spawn_amount = 10
+max_spawn_amount = 0
+min_spawn_amount = 0
 can_rotate = false
 clumping = 10
 crowding = 0

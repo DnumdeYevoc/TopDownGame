@@ -2,22 +2,24 @@ extends Area2D
 var boids_seen := []
 @export var vel := Vector2.UP
 @onready var collision: CollisionShape2D = $Collision
-@onready var texture: Sprite2D = $Sprite2D
+@onready var texture: AnimatedSprite2D = $Animation
+
 @onready var experience_scene := preload("res://experience.tscn")
 @export var clumping : int 
 @export var crowding : int 
 @export var speed : int 
 @export var enemy_type : Resource
 @onready var player: CharacterBody2D
+
 var despawn_range = 10000
 var tick_counter :=0
 func _ready() -> void:
 	randomize()
 	add_to_group("enemies")
 	if enemy_type != null:
-		texture.texture = enemy_type.texture
-		texture.scale = Vector2(enemy_type.collision_radius*2,enemy_type.collision_radius*2)/texture.texture.get_size()
-	
+		texture.sprite_frames = enemy_type.sprite_frames
+		texture.scale = texture.sprite_frames.get_frame_texture("default",0).get_size()/Vector2(enemy_type.collision_radius*2,enemy_type.collision_radius*2)
+		texture.play()
 		collision.shape = CircleShape2D.new()
 		collision.shape.radius = enemy_type.collision_radius
 		speed = enemy_type.speed
@@ -72,6 +74,7 @@ func die():
 	experience.value = enemy_type.experience_value
 	add_sibling(experience)
 	queue_free()
+
 
 func damage_player():
 	pass #make sure theres a spawn cooldown

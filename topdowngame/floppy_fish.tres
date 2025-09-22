@@ -1,12 +1,43 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bqtqpwhajiuku"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://bqtqpwhajiuku"]
 
 [ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://enemy_template.gd" id="1_fsvad"]
-[ext_resource type="Texture2D" uid="uid://ckprd7aaa463" path="res://beach.png" id="2_fsvad"]
+[ext_resource type="Texture2D" uid="uid://uwa3pgiowwne" path="res://FloppyFishFrames/pixil-frame-0.png" id="2_fsvad"]
+[ext_resource type="Texture2D" uid="uid://dn2mchqaiieey" path="res://FloppyFishFrames/pixil-frame-1.png" id="3_p5gsc"]
+[ext_resource type="Texture2D" uid="uid://c2whgdhuddlkc" path="res://FloppyFishFrames/pixil-frame-2.png" id="4_0h25j"]
+[ext_resource type="Texture2D" uid="uid://cblaxnj48mi11" path="res://FloppyFishFrames/pixil-frame-3.png" id="5_fskbw"]
+[ext_resource type="Texture2D" uid="uid://dfuck112jq2m" path="res://FloppyFishFrames/pixil-frame-4.png" id="6_oq65n"]
+[ext_resource type="Texture2D" uid="uid://cw2q1gfjhvck4" path="res://FloppyFishFrames/pixil-frame-5.png" id="7_w5irw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5gsc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fsvad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p5gsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0h25j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fskbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oq65n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w5irw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [resource]
 script = ExtResource("1_fsvad")
 enemy_index = 1
-texture = ExtResource("2_fsvad")
+sprite_frames = SubResource("SpriteFrames_p5gsc")
 collision_radius = 10
 speed = 50
 spawn_time = 2

@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch7d80m6qyahg"]
+[gd_scene load_steps=11 format=3 uid="uid://ch7d80m6qyahg"]
 
 [ext_resource type="Script" uid="uid://dfb5fqdpa5otd" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="Script" uid="uid://cbpcn7mp2kfeg" path="res://tile_layer_manager.gd" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://bevt2bnt7gydc" path="res://player.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://3algkho6e2ym" path="res://fps.gd" id="5_7jktm"]
-[ext_resource type="Texture2D" uid="uid://cidq0ue4vvq7l" path="res://OGA-compass-pixel-big_0.png" id="5_j5wjh"]
 [ext_resource type="Resource" uid="uid://ef3ecd6vk814" path="res://enemy_template.tres" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://ddvbqgh2vm2ar" path="res://enemy_manager.gd" id="7_eow3j"]
 [ext_resource type="Resource" uid="uid://bqtqpwhajiuku" path="res://floppy_fish.tres" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://c7l48cpw3uuqo" path="res://ProgessBarTextures/pixil-frame-1.png" id="8_vef74"]
+[ext_resource type="Texture2D" uid="uid://djdo6dqvdgjly" path="res://ProgessBarTextures/pixil-frame-0.png" id="9_hve3p"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
 seed = 64050848
@@ -22,23 +23,61 @@ script = ExtResource("2_fc0e3")
 noise = SubResource("FastNoiseLite_fc0e3")
 world_seed = 64050848
 
-[node name="Player" parent="." instance=ExtResource("3_feb5d")]
-
-[node name="FPS2" type="Label" parent="Player"]
-offset_left = -460.0
-offset_top = -347.0
-offset_right = -420.0
-offset_bottom = -324.0
-script = ExtResource("5_7jktm")
-
-[node name="Compass" type="Sprite2D" parent="Player"]
-position = Vector2(-528, -436)
-scale = Vector2(0.355469, 0.355469)
-texture = ExtResource("5_j5wjh")
-
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-
 [node name="EnemyManager" type="Node2D" parent="."]
 script = ExtResource("7_eow3j")
 enemy_template = ExtResource("6_eow3j")
 floppy_fish = ExtResource("8_j5wjh")
+
+[node name="Player" parent="." instance=ExtResource("3_feb5d")]
+
+[node name="Label" type="Label" parent="Player"]
+offset_left = -429.0
+offset_top = -246.0
+offset_right = -340.0
+offset_bottom = -223.0
+script = ExtResource("5_7jktm")
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+
+[node name="ExperienceBar" type="TextureProgressBar" parent="Player"]
+texture_filter = 1
+offset_left = -440.0
+offset_top = -353.0
+offset_right = 440.0
+offset_bottom = -337.0
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_under = ExtResource("8_vef74")
+texture_progress = ExtResource("9_hve3p")
+
+[node name="SpeedBar" type="TextureProgressBar" parent="Player"]
+texture_filter = 1
+offset_left = -434.0
+offset_top = 57.0
+offset_right = -402.0
+offset_bottom = 357.0
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_under = ExtResource("8_vef74")
+texture_progress = ExtResource("9_hve3p")
+
+[node name="HealthBar" type="TextureProgressBar" parent="Player"]
+texture_filter = 1
+offset_left = -24.0
+offset_top = -31.0
+offset_right = 24.0
+offset_bottom = -15.0
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_under = ExtResource("8_vef74")
+texture_progress = ExtResource("9_hve3p")

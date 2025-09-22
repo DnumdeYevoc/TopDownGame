@@ -96,8 +96,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 4.0
-height = 18.0
+radius = 5.0
+height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4flbx")
@@ -112,10 +112,11 @@ script = ExtResource("4_hqtel")
 texture_filter = 1
 position = Vector2(0, -2.98023e-08)
 sprite_frames = SubResource("SpriteFrames_n7ghd")
-animation = &"DownSlow"
+animation = &"UpSlow"
+frame_progress = 0.0297024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_onrkg")
 
