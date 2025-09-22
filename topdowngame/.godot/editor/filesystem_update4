@@ -15,3 +15,5 @@ res://player.gd
 res://trail.gd
 res://tile_map_layer.gd
 res://fps.gd
+res://experience.tscn
+res://experience.gd

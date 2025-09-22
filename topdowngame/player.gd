@@ -1,14 +1,14 @@
 extends CharacterBody2D
-@export var speed : int
+@export var speed : int = 1000
 @export var walking_speed := 5000.00
 @export var acc = 500
 var speed_cap = 500000
 @onready var trail: Line2D = $Trail
 @onready var trail_collision: Area2D = $TrailCollision
 @onready var sprite: AnimatedSprite2D = $Sprite2D
-
 var decelerate := false
 var d = Vector2(0,0)
+var experience_value := 0
 func _input(event: InputEvent) -> void:
 	#slowdown time
 	if speed != 0:
@@ -23,12 +23,24 @@ func _physics_process(delta: float) -> void:
 	d=(get_global_mouse_position()-global_position).normalized()
 	#animation 
 	var atlas := Vector2(0,0)
-	if d.y>0:
+	if d.y>0.5:
 		atlas.y += 1
-	elif d.y<0:
+	elif d.y<-0.5:
 		atlas.y-= 1
-	#make this work
+	if d.x>0.5:
+		atlas.x += 1
+	elif d.x <-0.5:
+		atlas.x-= 1
+	if atlas == Vector2(1,0):
+		sprite.play("RightSlow")
+	if atlas == Vector2(-1,0):
+		sprite.play("LeftSlow")
+	if atlas == Vector2(0,1):
+		sprite.play("DownSlow")
+	if atlas == Vector2(0,-1):
+		sprite.play("UpSlow")
 	
+	sprite.speed_scale = clamp(abs((speed)/10000), 0.5, 10)
 	#deceleration
 	if Input.is_action_just_pressed("Right_Click"):
 		if speed<= walking_speed and speed>=0:
@@ -57,7 +69,9 @@ func _physics_process(delta: float) -> void:
 	velocity = d*delta*speed
 	move_and_slide()
 
-
+func experience(value):
+	experience_value += value
+	print(experience_value)
 func _on_trail_collision_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
 		area.die()

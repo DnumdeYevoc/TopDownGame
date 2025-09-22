@@ -17,24 +17,24 @@ fractal_weighted_strength = 1.0
 [node name="Game" type="Node"]
 script = ExtResource("1_fc0e3")
 
-[node name="FPS2" type="Label" parent="."]
-offset_left = -460.0
-offset_top = -347.0
-offset_right = -420.0
-offset_bottom = -324.0
-script = ExtResource("5_7jktm")
-
-[node name="Compass" type="Sprite2D" parent="."]
-position = Vector2(-528, -436)
-scale = Vector2(0.355469, 0.355469)
-texture = ExtResource("5_j5wjh")
-
 [node name="TileLayerManager" type="Node2D" parent="."]
 script = ExtResource("2_fc0e3")
 noise = SubResource("FastNoiseLite_fc0e3")
 world_seed = 64050848
 
 [node name="Player" parent="." instance=ExtResource("3_feb5d")]
+
+[node name="FPS2" type="Label" parent="Player"]
+offset_left = -460.0
+offset_top = -347.0
+offset_right = -420.0
+offset_bottom = -324.0
+script = ExtResource("5_7jktm")
+
+[node name="Compass" type="Sprite2D" parent="Player"]
+position = Vector2(-528, -436)
+scale = Vector2(0.355469, 0.355469)
+texture = ExtResource("5_j5wjh")
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 

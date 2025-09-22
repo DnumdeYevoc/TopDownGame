@@ -7,9 +7,10 @@ extends Resource
 
 @export var spawn_time :int 
 
-@export var max_spawn_amount : int 
-#average spawn amount = max_spawn_amount* 1/spawn_chance 
-@export var spawn_chance :float
+@export var max_spawn_amount : int
+@export var min_spawn_amount :int
 @export var can_rotate : bool 
 @export var clumping : int 
 @export var crowding : int 
+
+@export var experience_value :int

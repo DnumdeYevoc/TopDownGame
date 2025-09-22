@@ -3,6 +3,7 @@ var boids_seen := []
 @export var vel := Vector2.UP
 @onready var collision: CollisionShape2D = $Collision
 @onready var texture: Sprite2D = $Sprite2D
+@onready var experience_scene := preload("res://experience.tscn")
 @export var clumping : int 
 @export var crowding : int 
 @export var speed : int 
@@ -39,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		tick_counter += 1
 		
 		if player.position.distance_to(position)>despawn_range:
+			
 			queue_free()
 
 func boids():
@@ -65,6 +67,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	texture.visible = false
 
 func die():
+	var experience = experience_scene.instantiate()
+	experience.position = position
+	experience.value = enemy_type.experience_value
+	add_sibling(experience)
 	queue_free()
 
 func damage_player():
