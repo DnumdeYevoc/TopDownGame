@@ -20,9 +20,12 @@ func _ready() -> void:
 		tileset_id = 2
 	elif height_index == water_level:
 		tileset_id = 1
+		modulate *= (float(height_index)+13.0)/20.0
+		modulate.a = 1
 	else:
 		tileset_id = 0
-		modulate *= (float(height_index)+15.0)/20.0
+		modulate *= (float(height_index)+12.0)/20.0
+		modulate.a = 1
 	update_tiles(chunk_size)
 
 func _physics_process(delta: float) -> void:

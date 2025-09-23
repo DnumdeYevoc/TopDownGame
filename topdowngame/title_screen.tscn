@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6rravpc1apu7"]
 
-[ext_resource type="Script" uid="uid://dafk0y5mh8dqp" path="res://tile_screen.gd" id="1_1ea4h"]
-[ext_resource type="Texture2D" uid="uid://cedj1xfae4cwn" path="res://icon.svg" id="2_lrpa4"]
+[ext_resource type="Script" uid="uid://dafk0y5mh8dqp" path="res://title_screen.gd" id="1_ak2if"]
+[ext_resource type="Texture2D" uid="uid://cedj1xfae4cwn" path="res://icon.svg" id="2_ig5kc"]
 
 [node name="TileScreen" type="Node2D"]
-script = ExtResource("1_1ea4h")
+script = ExtResource("1_ak2if")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
@@ -13,6 +13,6 @@ offset_left = 149.0
 offset_top = 344.0
 offset_right = 680.0
 offset_bottom = 472.0
-texture_normal = ExtResource("2_lrpa4")
+texture_normal = ExtResource("2_ig5kc")
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

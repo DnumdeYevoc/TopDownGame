@@ -3,7 +3,11 @@ extends Resource
 @export var enemy_index : int 
 @export var sprite_frames : SpriteFrames 
 @export var collision_radius :int 
+@export var collision_height :int 
+@export var collision_rotation :int 
 @export var speed :int 
+@export var hit_speed :int 
+@export var hit_damage :int 
 
 @export var spawn_time :int 
 

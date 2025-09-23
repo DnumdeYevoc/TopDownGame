@@ -55,7 +55,7 @@ func attack():
 			var angle = (p2 - p1).angle()
 			var rect_shape = RectangleShape2D.new()
 			
-			rect_shape.size = Vector2(length , width)
+			rect_shape.size = Vector2(length , width*1.25)
 			var collision_shape_node = CollisionShape2D.new()
 			collision_shape_node.shape = rect_shape
 			collision_shape_node.position = center-get_parent().position

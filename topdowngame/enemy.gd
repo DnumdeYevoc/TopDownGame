@@ -10,7 +10,8 @@ var boids_seen := []
 @export var speed : int 
 @export var enemy_type : Resource
 @onready var player: CharacterBody2D
-
+var timer_done = true
+var player_touching := false
 var despawn_range = 10000
 var tick_counter :=0
 func _ready() -> void:
@@ -18,10 +19,12 @@ func _ready() -> void:
 	add_to_group("enemies")
 	if enemy_type != null:
 		texture.sprite_frames = enemy_type.sprite_frames
-		texture.scale = texture.sprite_frames.get_frame_texture("default",0).get_size()/Vector2(enemy_type.collision_radius*2,enemy_type.collision_radius*2)
+		texture.scale = texture.sprite_frames.get_frame_texture("default",0).get_size()*Vector2(enemy_type.collision_radius/96.0,enemy_type.collision_radius/96.0)
 		texture.play()
-		collision.shape = CircleShape2D.new()
+		collision.shape = CapsuleShape2D.new()
 		collision.shape.radius = enemy_type.collision_radius
+		collision.shape.height = enemy_type.collision_height
+		collision.rotation_degrees = enemy_type.collision_rotation
 		speed = enemy_type.speed
 		clumping = enemy_type.clumping
 		crowding = enemy_type.crowding
@@ -42,7 +45,6 @@ func _physics_process(delta: float) -> void:
 		tick_counter += 1
 		
 		if player.position.distance_to(position)>despawn_range:
-			
 			queue_free()
 
 func boids():
@@ -63,6 +65,7 @@ func _on_area_exited(area: Area2D) -> void:
 	if area and area.is_in_group("enemies"):
 		boids_seen.erase(area)
 
+
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	texture.visible = true
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
@@ -77,4 +80,20 @@ func die():
 
 
 func damage_player():
-	pass #make sure theres a spawn cooldown
+		if player_touching and timer_done:
+			player.take_damage(enemy_type.hit_damage)
+			if player.dead== false:
+				timer_done = false
+				var timer2 = get_tree().create_timer(enemy_type.hit_speed/Engine.time_scale)
+				await timer2.timeout
+				timer_done = true
+				damage_player()
+
+func _on_body_entered(body: Node2D) -> void:
+	if body == player:
+		player_touching = true
+		damage_player()
+
+func _on_body_exited(body: Node2D) -> void:
+	if body == player:
+		player_touching = false

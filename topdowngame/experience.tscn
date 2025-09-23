@@ -1,25 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3wu3t8i5fmdv"]
+[gd_scene load_steps=3 format=3 uid="uid://c3wu3t8i5fmdv"]
 
-[ext_resource type="Texture2D" uid="uid://bmc0ysrbbpj3n" path="res://experience_0.png" id="1_rronj"]
-[ext_resource type="Texture2D" uid="uid://d2pw41wfu60cp" path="res://experience_1.png" id="2_j7eut"]
+[ext_resource type="Texture2D" uid="uid://c7l48cpw3uuqo" path="res://ProgessBarTextures/Experience.png" id="1_rronj"]
 [ext_resource type="Script" uid="uid://dvog38076ucf0" path="res://experience.gd" id="3_j7eut"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_0bgji"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_rronj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_j7eut")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="Experience" type="AnimatedSprite2D"]
+[node name="Experience" type="Sprite2D"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_0bgji")
-autoplay = "default"
+texture = ExtResource("1_rronj")
 script = ExtResource("3_j7eut")
