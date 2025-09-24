@@ -50,4 +50,4 @@ min_spawn_amount = 2
 can_rotate = false
 clumping = 40
 crowding = 0
-experience_value = 10
+experience_value = 1

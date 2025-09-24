@@ -1,4 +1,3 @@
-res://player.gd
 res://player.tscn
 res://enemy_template.tres
 res://floppy_fish.tres
@@ -8,3 +7,8 @@ res://game.tscn
 res://enemy.tscn
 res://timer.tscn
 res://experience.tscn
+res://player.gd
+res://enemy.gd
+res://title_screen.gd
+res://tile_layer_manager.gd
+res://experience.gd

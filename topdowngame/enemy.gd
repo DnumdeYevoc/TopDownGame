@@ -81,16 +81,20 @@ func die():
 
 func damage_player():
 		if player_touching and timer_done:
-			player.take_damage(enemy_type.hit_damage)
+			var timer3 = get_tree().create_timer(0.25*Engine.time_scale)
+			print(0.25*Engine.time_scale)
+			await timer3.timeout
+			if player_touching:
+				player.take_damage(enemy_type.hit_damage)
 			if player.dead== false:
 				timer_done = false
-				var timer2 = get_tree().create_timer(enemy_type.hit_speed/Engine.time_scale)
+				var timer2 = get_tree().create_timer(enemy_type.hit_speed*Engine.time_scale)
 				await timer2.timeout
 				timer_done = true
 				damage_player()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body == player:
+	if body == player and player.self_collision.disabled == false:
 		player_touching = true
 		damage_player()
 

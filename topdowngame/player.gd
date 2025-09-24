@@ -7,6 +7,7 @@ var speed_cap = 500000
 @onready var trail: Line2D = $Trail
 @onready var trail_collision: Area2D = $TrailCollision
 @onready var claw_collision: CollisionShape2D = $ClawArea/ClawCollision
+@onready var self_collision: CollisionShape2D = $SelfCollision
 @onready var sprite: AnimatedSprite2D = $Sprite2D
 
 @onready var experience_bar: TextureProgressBar = $ExperienceBar
@@ -21,9 +22,11 @@ var decelerate := false
 var d = Vector2(0,0)
 var experience_value := 0
 var dead := false
-
+var attack_cooldown_amount = 48 #8 minimum
+var cooldown :int
 func _ready() -> void:
-	speed_cap = 101000
+	
+	speed_cap = 367*1500
 	speed_bar.max_value = speed_cap
 	@warning_ignore("integer_division")
 	speed_bar.size.x = speed_cap/1000
@@ -64,26 +67,32 @@ func _physics_process(delta: float) -> void:
 				speed +=acc*Engine.time_scale
 			else:
 				speed = 0
-				
 	#attack
-	if Input.is_action_just_pressed("c"):
+	
+	if Input.is_action_just_pressed("c") and cooldown== 0:
 		sprite.play("Claw")
 		claw_collision.disabled = false
-	if Input.is_action_just_released("c"):
+		self_collision.disabled = true
+		cooldown = attack_cooldown_amount
+		
+	if Input.is_action_just_released("c") and cooldown<= attack_cooldown_amount-8 or sprite.frame == 6 and cooldown<= attack_cooldown_amount-8 :
 		sprite.play("DownSlow")
 		claw_collision.disabled = true
+		self_collision.disabled =false
+	if cooldown>=1:
+		cooldown-=1
 		
 	#speedbar
 	if speed< -1000:
 		speed_bar.texture_progress = negative_speed_texture
 		speed_bar.max_value = speed_cap*2
 		speed_bar.tooltip_text = "Max Speed: ???"
-		speed_bar.size.x = speed_cap/250
+		
 	elif speed>1000:
 		speed_bar.texture_progress = speed_texure
 		speed_bar.max_value = speed_cap
-		speed_bar.tooltip_text = "Max Speed: "+str(speed_cap)
-		speed_bar.size.x = speed_cap/500
+		speed_bar.tooltip_text = "Max Speed: "+str(speed_cap/1500)
+	
 	speed_bar.value = abs(speed)
 	speed_label.text = str(speed/1500) + "km/h"
 	#update pos
@@ -124,16 +133,12 @@ func level_up():
 		experience_bar.max_value += 100
 		#Upgrades
 		speed_cap += 5000*GLOBALS.level
+		speed_bar.size.x = speed_cap/1000
 		take_damage(10)
 
-		speed_bar.size.x = speed_cap/1000
 func _on_trail_collision_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
 		area.die()
-		
-
-
-
 
 func take_damage(damage):
 	health_bar.value -=damage
@@ -155,7 +160,7 @@ func update_health_bar():
 func die():
 	dead = true
 	queue_free()
-	get_tree().change_scene_to_file("res://title_screen.tscn")
+	get_tree().reload_current_scene()
 
 
 func _on_claw_area_area_entered(area: Area2D) -> void:

@@ -1,14 +1,20 @@
-[gd_scene load_steps=24 format=3 uid="uid://bevt2bnt7gydc"]
+[gd_scene load_steps=30 format=3 uid="uid://bevt2bnt7gydc"]
 
 [ext_resource type="Script" uid="uid://8jp23engpk74" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://h12l27fgn30" path="res://PlayerFrames/DownSlow/pixil-frame-0.png" id="3_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://cedj1xfae4cwn" path="res://icon.svg" id="3_pylmc"]
+[ext_resource type="Texture2D" uid="uid://qxynjvoemu8w" path="res://PlayerFrames/ClawAttack/pixil-frame-0.png" id="3_jm5j8"]
 [ext_resource type="Texture2D" uid="uid://ctnhrt6c8hqxe" path="res://PlayerFrames/DownSlow/pixil-frame-1.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://ds6c5um54f6ps" path="res://PlayerFrames/ClawAttack/pixil-frame-1.png" id="4_7hik5"]
 [ext_resource type="Script" uid="uid://behb8pl72t73c" path="res://trail.gd" id="4_hqtel"]
 [ext_resource type="Texture2D" uid="uid://p3xmuhg5wgj1" path="res://PlayerFrames/DownSlow/pixil-frame-2.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://cekectlho3y08" path="res://PlayerFrames/ClawAttack/pixil-frame-2.png" id="5_qtqh7"]
+[ext_resource type="Texture2D" uid="uid://boqk43vcxd1y3" path="res://PlayerFrames/ClawAttack/pixil-frame-3.png" id="6_2wuci"]
 [ext_resource type="Texture2D" uid="uid://bhayumw2pwhw4" path="res://PlayerFrames/DownSlow/pixil-frame-3.png" id="6_b26j0"]
+[ext_resource type="Texture2D" uid="uid://dhat8jh7wo7xh" path="res://PlayerFrames/ClawAttack/pixil-frame-4.png" id="7_iruf7"]
 [ext_resource type="Texture2D" uid="uid://bl7cnwaxf2e6u" path="res://PlayerFrames/LeftSlow/pixil-frame-0.png" id="7_q13i1"]
+[ext_resource type="Texture2D" uid="uid://bn3roktygo2nn" path="res://PlayerFrames/ClawAttack/pixil-frame-5.png" id="8_j5n4i"]
 [ext_resource type="Texture2D" uid="uid://c5a7ik6isjq8u" path="res://PlayerFrames/LeftSlow/pixil-frame-1.png" id="8_pylmc"]
+[ext_resource type="Texture2D" uid="uid://bj4drd2181jnq" path="res://PlayerFrames/ClawAttack/pixil-frame-6.png" id="9_634y6"]
 [ext_resource type="Texture2D" uid="uid://3pjvwin2kpbt" path="res://PlayerFrames/LeftSlow/pixil-frame-2.png" id="9_pbfsw"]
 [ext_resource type="Texture2D" uid="uid://dmi6psshyonde" path="res://PlayerFrames/LeftSlow/pixil-frame-3.png" id="10_5tmop"]
 [ext_resource type="Texture2D" uid="uid://bhnwd81xba0d6" path="res://PlayerFrames/RightSlow/pixil-frame-0.png" id="11_7ahtn"]
@@ -20,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://cgek5i7i284es" path="res://PlayerFrames/UpSlow/pixil-frame-2.png" id="17_2wuci"]
 [ext_resource type="Texture2D" uid="uid://cqhnl7vfugbpq" path="res://PlayerFrames/UpSlow/pixil-frame-3.png" id="18_iruf7"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 5.0
+height = 20.0
+
 [sub_resource type="Curve" id="Curve_sweqy"]
 _limits = [0.0, 1.0, 0.0, 5.0]
 _data = [Vector2(0, 0.617978), 0.0, 0.0869795, 0, 0, Vector2(5, 1), 0.0, 0.0, 0, 0]
@@ -29,11 +39,29 @@ point_count = 2
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_pylmc")
+"texture": ExtResource("3_jm5j8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7hik5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qtqh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2wuci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_iruf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_j5n4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_634y6")
 }],
 "loop": true,
 "name": &"Claw",
-"speed": 5.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -104,15 +132,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 5.0
-height = 20.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_q13i1"]
-radius = 25.0799
+radius = 24.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4flbx")
+
+[node name="SelfCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_onrkg")
 
 [node name="Trail" type="Line2D" parent="."]
 points = PackedVector2Array(1, -5)
@@ -124,21 +153,20 @@ script = ExtResource("4_hqtel")
 texture_filter = 1
 position = Vector2(0, -2.98023e-08)
 sprite_frames = SubResource("SpriteFrames_n7ghd")
-animation = &"DownSlow"
+animation = &"Claw"
 autoplay = "DownSlow"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_onrkg")
+frame_progress = 0.496154
 
 [node name="TrailCollision" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 2
 
 [node name="ClawArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="ClawCollision" type="CollisionShape2D" parent="ClawArea"]
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_q13i1")
 disabled = true
 

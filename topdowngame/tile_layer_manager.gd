@@ -13,6 +13,7 @@ var render_dis := 6.0
 @onready var first := true
 
 func _ready() -> void:
+	GLOBALS.level = 0
 	world_seed=  random.randi_range(0,99999999)
 	noise.seed = world_seed
 	noise.frequency = 0.005

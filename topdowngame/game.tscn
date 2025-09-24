@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://ch7d80m6qyahg"]
+[gd_scene load_steps=12 format=3 uid="uid://ch7d80m6qyahg"]
 
-[ext_resource type="Script" uid="uid://dfb5fqdpa5otd" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="Script" uid="uid://cbpcn7mp2kfeg" path="res://tile_layer_manager.gd" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://bevt2bnt7gydc" path="res://player.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://3algkho6e2ym" path="res://fps.gd" id="5_7jktm"]
@@ -18,7 +17,6 @@ fractal_type = 2
 fractal_weighted_strength = 1.0
 
 [node name="Game" type="Node"]
-script = ExtResource("1_fc0e3")
 
 [node name="TileLayerManager" type="Node2D" parent="."]
 script = ExtResource("2_fc0e3")
@@ -33,20 +31,20 @@ floppy_fish = ExtResource("8_j5wjh")
 [node name="Player" parent="." instance=ExtResource("3_feb5d")]
 
 [node name="Label" type="Label" parent="Player"]
-offset_left = -429.0
-offset_top = -246.0
-offset_right = -340.0
-offset_bottom = -223.0
+offset_left = -246.0
+offset_top = -306.0
+offset_right = -157.0
+offset_bottom = -283.0
 script = ExtResource("5_7jktm")
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 
 [node name="ExperienceBar" type="TextureProgressBar" parent="Player"]
 texture_filter = 1
-offset_left = -339.0
-offset_top = -520.0
-offset_right = 342.0
-offset_bottom = -504.0
+offset_left = -253.0
+offset_top = -395.0
+offset_right = 256.0
+offset_bottom = -379.0
 nine_patch_stretch = true
 stretch_margin_left = 6
 stretch_margin_top = 6
@@ -57,9 +55,9 @@ texture_progress = ExtResource("8_vef74")
 
 [node name="LevelLabel" type="Label" parent="Player/ExperienceBar"]
 layout_mode = 0
-offset_left = 285.0
+offset_left = 204.0
 offset_top = 18.0
-offset_right = 410.0
+offset_right = 329.0
 offset_bottom = 53.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -68,10 +66,10 @@ theme_override_font_sizes/font_size = 25
 
 [node name="SpeedBar" type="TextureProgressBar" parent="Player"]
 texture_filter = 1
-offset_left = -343.0
-offset_top = 510.0
-offset_right = 77.0
-offset_bottom = 526.0
+offset_left = -260.0
+offset_top = 380.0
+offset_right = 40.0
+offset_bottom = 396.0
 allow_greater = true
 nine_patch_stretch = true
 stretch_margin_left = 6
