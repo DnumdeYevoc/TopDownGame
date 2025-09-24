@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch7d80m6qyahg"]
+[gd_scene load_steps=13 format=3 uid="uid://ch7d80m6qyahg"]
 
 [ext_resource type="Script" uid="uid://cbpcn7mp2kfeg" path="res://tile_layer_manager.gd" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://bevt2bnt7gydc" path="res://player.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://3algkho6e2ym" path="res://fps.gd" id="5_7jktm"]
-[ext_resource type="Resource" uid="uid://ef3ecd6vk814" path="res://enemy_template.tres" id="6_eow3j"]
+[ext_resource type="Resource" uid="uid://3honpo5aab0w" path="res://EnemyResources/shark.tres" id="5_mfdv2"]
+[ext_resource type="Resource" uid="uid://ef3ecd6vk814" path="res://EnemyResources/enemy_template.tres" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://ddvbqgh2vm2ar" path="res://enemy_manager.gd" id="7_eow3j"]
-[ext_resource type="Resource" uid="uid://bqtqpwhajiuku" path="res://floppy_fish.tres" id="8_j5wjh"]
+[ext_resource type="Resource" uid="uid://bqtqpwhajiuku" path="res://EnemyResources/floppy_fish.tres" id="8_j5wjh"]
 [ext_resource type="Texture2D" uid="uid://cdb4e30x4kf0m" path="res://ProgessBarTextures/Under.png" id="8_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://c7l48cpw3uuqo" path="res://ProgessBarTextures/Experience.png" id="8_vef74"]
 [ext_resource type="Texture2D" uid="uid://djdo6dqvdgjly" path="res://ProgessBarTextures/Health.png" id="9_hve3p"]
@@ -27,6 +28,7 @@ world_seed = 64050848
 script = ExtResource("7_eow3j")
 enemy_template = ExtResource("6_eow3j")
 floppy_fish = ExtResource("8_j5wjh")
+shark = ExtResource("5_mfdv2")
 
 [node name="Player" parent="." instance=ExtResource("3_feb5d")]
 

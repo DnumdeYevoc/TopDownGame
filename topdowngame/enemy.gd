@@ -19,7 +19,7 @@ func _ready() -> void:
 	add_to_group("enemies")
 	if enemy_type != null:
 		texture.sprite_frames = enemy_type.sprite_frames
-		texture.scale = texture.sprite_frames.get_frame_texture("default",0).get_size()*Vector2(enemy_type.collision_radius/96.0,enemy_type.collision_radius/96.0)
+		texture.scale = enemy_type.texture_scale
 		texture.play()
 		collision.shape = CapsuleShape2D.new()
 		collision.shape.radius = enemy_type.collision_radius
@@ -40,8 +40,8 @@ func _physics_process(delta: float) -> void:
 		vel = vel.normalized()*speed*delta*Engine.time_scale
 		global_position += vel
 		
-		if enemy_type.can_rotate:
-			rotation = lerp_angle(rotation, atan(vel.y/vel.x), 0.4)
+		if enemy_type.can_rotate and texture.animation != "attack":
+			rotation = lerp_angle(rotation, (player.global_position-global_position).angle()-PI/2, 0.4)
 		tick_counter += 1
 		
 		if player.position.distance_to(position)>despawn_range:
@@ -78,13 +78,13 @@ func die():
 	add_sibling(experience)
 	queue_free()
 
-
 func damage_player():
 		if player_touching and timer_done:
-			var timer3 = get_tree().create_timer(0.25*Engine.time_scale)
-			print(0.25*Engine.time_scale)
+			texture.play("attack")
+			var timer3 = get_tree().create_timer(enemy_type.attack_time*Engine.time_scale)
 			await timer3.timeout
 			if player_touching:
+				
 				player.take_damage(enemy_type.hit_damage)
 			if player.dead== false:
 				timer_done = false
@@ -101,3 +101,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body == player:
 		player_touching = false
+
+func _on_animation_animation_finished() -> void:
+	texture.animation = "default"
+	texture.play()

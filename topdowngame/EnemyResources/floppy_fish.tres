@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=9 format=3 uid="uid://bqtqpwhajiuku"]
 
-[ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://enemy_template.gd" id="1_fsvad"]
+[ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://EnemyResources/enemy_template.gd" id="1_fsvad"]
 [ext_resource type="Texture2D" uid="uid://uwa3pgiowwne" path="res://FloppyFishFrames/pixil-frame-0.png" id="2_fsvad"]
 [ext_resource type="Texture2D" uid="uid://dn2mchqaiieey" path="res://FloppyFishFrames/pixil-frame-1.png" id="3_p5gsc"]
 [ext_resource type="Texture2D" uid="uid://c2whgdhuddlkc" path="res://FloppyFishFrames/pixil-frame-2.png" id="4_0h25j"]
@@ -10,6 +10,29 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p5gsc"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fsvad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p5gsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0h25j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fskbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oq65n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w5irw")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_fsvad")
@@ -41,12 +64,15 @@ sprite_frames = SubResource("SpriteFrames_p5gsc")
 collision_radius = 4
 collision_height = 20
 collision_rotation = 90
+texture_scale = Vector2(1, 1)
 speed = 30
 hit_speed = 1
 hit_damage = 10
 spawn_time = 2
+attack_time = 0.25
 max_spawn_amount = 10
 min_spawn_amount = 2
+min_y = 0
 can_rotate = false
 clumping = 40
 crowding = 0

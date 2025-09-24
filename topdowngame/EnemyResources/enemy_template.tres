@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://ef3ecd6vk814"]
 
-[ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://enemy_template.gd" id="1_yumcj"]
+[ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://EnemyResources/enemy_template.gd" id="1_yumcj"]
 [ext_resource type="Texture2D" uid="uid://cedj1xfae4cwn" path="res://icon.svg" id="2_b4ygo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b4ygo"]
@@ -21,12 +21,14 @@ sprite_frames = SubResource("SpriteFrames_b4ygo")
 collision_radius = 10
 collision_height = 10
 collision_rotation = 0
+texture_scale = Vector2(0, 0)
 speed = 500
 hit_speed = 1
 hit_damage = 10
 spawn_time = 5
 max_spawn_amount = 0
 min_spawn_amount = 0
+min_y = 0
 can_rotate = false
 clumping = 10
 crowding = 0

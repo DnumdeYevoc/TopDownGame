@@ -1,0 +1,81 @@
+[gd_resource type="Resource" load_steps=14 format=3 uid="uid://3honpo5aab0w"]
+
+[ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://EnemyResources/enemy_template.gd" id="1_xljde"]
+[ext_resource type="Texture2D" uid="uid://cw3wd55irtteu" path="res://SharkFrames/pixil-frame-4.png" id="2_tgn0a"]
+[ext_resource type="Texture2D" uid="uid://13g7s0obohtj" path="res://SharkFrames/pixil-frame-5.png" id="3_byopv"]
+[ext_resource type="Texture2D" uid="uid://bfw4bamibjnxu" path="res://SharkFrames/pixil-frame-6.png" id="4_q2d5u"]
+[ext_resource type="Texture2D" uid="uid://b686tbayyth2h" path="res://SharkFrames/pixil-frame-7.png" id="5_55xhm"]
+[ext_resource type="Texture2D" uid="uid://c8yg5owmyh4bk" path="res://SharkFrames/pixil-frame-8.png" id="6_d45wl"]
+[ext_resource type="Texture2D" uid="uid://dhth8arq6xpht" path="res://SharkFrames/pixil-frame-9.png" id="7_ijr0o"]
+[ext_resource type="Texture2D" uid="uid://b0xdqfmrld8bj" path="res://SharkFrames/pixil-frame-10.png" id="8_6ld5n"]
+[ext_resource type="Texture2D" uid="uid://dy2ue6suah4aw" path="res://SharkFrames/pixil-frame-0.png" id="9_ry4sl"]
+[ext_resource type="Texture2D" uid="uid://cxgviecw8q7cb" path="res://SharkFrames/pixil-frame-1.png" id="10_5lpnc"]
+[ext_resource type="Texture2D" uid="uid://dwvvsarxtw46p" path="res://SharkFrames/pixil-frame-2.png" id="11_3tes1"]
+[ext_resource type="Texture2D" uid="uid://dkmnpy43p4vwy" path="res://SharkFrames/pixil-frame-3.png" id="12_ywk7d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3m8l2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tgn0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_byopv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_q2d5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_55xhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_d45wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ijr0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6ld5n")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ry4sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5lpnc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3tes1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ywk7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_xljde")
+enemy_index = 2
+sprite_frames = SubResource("SpriteFrames_3m8l2")
+collision_radius = 20
+collision_height = 80
+collision_rotation = 0
+texture_scale = Vector2(1, 1)
+speed = 1000
+hit_speed = 3
+hit_damage = 50
+spawn_time = 10
+attack_time = 0.5
+max_spawn_amount = 1
+min_spawn_amount = 1
+min_y = 0
+can_rotate = true
+clumping = 40
+crowding = 0
+experience_value = 100
