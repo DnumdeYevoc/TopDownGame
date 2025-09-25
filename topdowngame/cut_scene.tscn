@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://46ds810qcmcv"]
+
+[ext_resource type="Texture2D" uid="uid://ctnhrt6c8hqxe" path="res://PlayerFrames/DownSlow/pixil-frame-1.png" id="2_cea7f"]
+[ext_resource type="Script" uid="uid://cfj3ompv142xv" path="res://cut_scene.gd" id="2_vsbak"]
+[ext_resource type="Texture2D" uid="uid://x8t0auryt76n" path="res://SpeechBubble.png" id="3_cea7f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_li4wx"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="CutScene" type="ColorRect"]
+texture_filter = 1
+offset_left = -133.0
+offset_top = -92.0
+offset_right = 3.0
+offset_bottom = -45.0
+scale = Vector2(5, 5)
+color = Color(0.581033, 0.581033, 0.581033, 1)
+script = ExtResource("2_vsbak")
+
+[node name="Speaker" type="Sprite2D" parent="."]
+position = Vector2(26.8, 11.8)
+texture = ExtResource("2_cea7f")
+
+[node name="SpeechBubble" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(80, -0.199999)
+scale = Vector2(1.23906, 1.375)
+texture = ExtResource("3_cea7f")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 43.8
+offset_top = -7.59991
+offset_right = 322.8
+offset_bottom = 78.4001
+scale = Vector2(0.25, 0.25)
+text = "These fish look weird"
+label_settings = SubResource("LabelSettings_li4wx")

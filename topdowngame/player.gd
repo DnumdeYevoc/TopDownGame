@@ -18,15 +18,21 @@ var speed_cap = 500000
 
 @onready var negative_speed_texture = preload("res://ProgessBarTextures/NegativeSpeed.png")
 @onready var speed_texure = preload("res://ProgessBarTextures/Speed.png")
+
+var level_up_animation := false
 var decelerate := false
 var d = Vector2(0,0)
-var experience_value := 0
+
 var dead := false
 var attack_cooldown_amount = 48 #8 minimum
 var cooldown :int
+var trail_damage_factor :=1
+var claw_damage := 10
+
+var counter := 0
 func _ready() -> void:
 	
-	speed_cap = 367*1500
+	speed_cap = 6000
 	speed_bar.max_value = speed_cap
 	@warning_ignore("integer_division")
 	speed_bar.size.x = speed_cap/1000
@@ -44,7 +50,6 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	#movement
 	d=(get_global_mouse_position()-global_position).normalized()
-
 	#deceleration
 	if Input.is_action_just_pressed("Right_Click"):
 		if speed<= walking_speed and speed>=0:
@@ -68,20 +73,18 @@ func _physics_process(delta: float) -> void:
 			else:
 				speed = 0
 	#attack
-	
 	if Input.is_action_just_pressed("c") and cooldown== 0:
 		sprite.play("Claw")
 		claw_collision.disabled = false
 		self_collision.disabled = true
 		cooldown = attack_cooldown_amount
 		
-	if Input.is_action_just_released("c") and cooldown<= attack_cooldown_amount-8 or sprite.frame == 6 and cooldown<= attack_cooldown_amount-8 :
+	if sprite.frame == 6 and cooldown<= attack_cooldown_amount-8 :
 		sprite.play("DownSlow")
 		claw_collision.disabled = true
 		self_collision.disabled =false
 	if cooldown>=1:
 		cooldown-=1
-		
 	#speedbar
 	if speed< -1000:
 		speed_bar.texture_progress = negative_speed_texture
@@ -120,25 +123,59 @@ func _physics_process(delta: float) -> void:
 			sprite.play("UpSlow")
 		
 	sprite.speed_scale = clamp(sqrt(abs(speed))/100, 0.5, 10)
+	#makeshift level up animation
 
+	if level_up_animation:
+		counter +=1
+		var font_size=level_label.get_theme_font_size("font_size")
+		if counter<=25:
+			level_label.add_theme_font_size_override("font_size", font_size+(counter)/5)
+		else:
+			if counter <50:
+				level_label.add_theme_font_size_override("font_size", font_size-((counter-25)/5))
+			else:
+				#reset
+				level_label.add_theme_font_size_override("font_size", 25)
+				level_up_animation = false
+				counter = 0
+				update_health_bar()
+				
 func experience(value):
-	experience_value += value
-	experience_bar.value += experience_value
+	
+	experience_bar.value += value
 	if experience_bar.value >= experience_bar.max_value:
 		level_up()
+		
 func level_up():
+		level_up_animation = true
 		GLOBALS.level += 1
 		level_label.text = "Level " + str(GLOBALS.level)
+		
 		experience_bar.value -= experience_bar.max_value
-		experience_bar.max_value += 100
+		experience_bar.max_value += 25*GLOBALS.level
+
+			
 		#Upgrades
 		speed_cap += 5000*GLOBALS.level
 		speed_bar.size.x = speed_cap/1000
-		take_damage(10)
+		claw_collision.shape.radius +=0.005*GLOBALS.level
+		if attack_cooldown_amount !=8:
+			attack_cooldown_amount -= 1
+		claw_damage += 1
+		trail_damage_factor+=0.05
+		health_bar.max_value += 10
+		heal(10)
+		update_health_bar()
+		health_bar.visible =true
+
+		#check for another level up
+		if experience_bar.value >= experience_bar.max_value:
+			level_up()
+		
 
 func _on_trail_collision_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
-		area.die()
+		area.take_damage(trail.length*trail_damage_factor)
 
 func take_damage(damage):
 	health_bar.value -=damage
@@ -151,7 +188,8 @@ func heal(amount):
 	update_health_bar()
 	
 func update_health_bar():
-	health_bar.max_value = max_health
+	health_bar.size.x = health_bar.max_value
+	health_bar.position.x = -(health_bar.max_value)/4 
 	if health_bar.value == health_bar.max_value:
 		health_bar.visible = false
 	else:
@@ -165,4 +203,4 @@ func die():
 
 func _on_claw_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
-		area.die()
+		area.take_damage(claw_damage)

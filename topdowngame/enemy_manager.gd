@@ -4,14 +4,16 @@ const enemy_scene = preload("res://enemy.tscn")
 const timer_scene = preload("res://timer.tscn")
 
 var random := RandomNumberGenerator.new()
-@export var enemy_type_amount:= 3
+
+@export var enemy_type_amount:= 4
 @export var enemy_template : Resource
 @export var floppy_fish : Resource
 @export var shark : Resource
+@export var octo : Resource
+
 var timer_done := true
 var spawn_distance := 1000
 @onready var player := get_parent().get_node("Player")
-
 var children := []
 func _ready() -> void:
 	randomize()
@@ -23,13 +25,15 @@ func _process(delta: float) -> void:
 	spawn_distance = sqrt(sqrt(player.speed)*300)
 	if spawn_distance< 1000:
 		spawn_distance = 1000
-
-	if GLOBALS.level == -1:
+	
+	if GLOBALS.level == enemy_template.level_unlock:
 		spawn(enemy_template, enemy_template.enemy_index)
-	if GLOBALS.level>= 0:
+	if GLOBALS.level>= floppy_fish.level_unlock:
 		spawn(floppy_fish, floppy_fish.enemy_index)
-	if GLOBALS.level>= 0:
+	if GLOBALS.level>= shark.level_unlock:
 		spawn(shark, shark.enemy_index)
+	if GLOBALS.level>= octo.level_unlock:
+		spawn(octo, octo.enemy_index)
 	
 func spawn(enemy_type, enemy_index) -> void:
 	if enemy_type != null:

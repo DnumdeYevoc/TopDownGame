@@ -1,16 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://ch7d80m6qyahg"]
+[gd_scene load_steps=15 format=3 uid="uid://ch7d80m6qyahg"]
 
+[ext_resource type="Script" uid="uid://rm2v72rxb1h" path="res://game.gd" id="1_lc2xo"]
 [ext_resource type="Script" uid="uid://cbpcn7mp2kfeg" path="res://tile_layer_manager.gd" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://bevt2bnt7gydc" path="res://player.tscn" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://3algkho6e2ym" path="res://fps.gd" id="5_7jktm"]
 [ext_resource type="Resource" uid="uid://3honpo5aab0w" path="res://EnemyResources/shark.tres" id="5_mfdv2"]
 [ext_resource type="Resource" uid="uid://ef3ecd6vk814" path="res://EnemyResources/enemy_template.tres" id="6_eow3j"]
+[ext_resource type="Resource" uid="uid://crd78jrohuj88" path="res://EnemyResources/octo.tres" id="6_iotsf"]
 [ext_resource type="Script" uid="uid://ddvbqgh2vm2ar" path="res://enemy_manager.gd" id="7_eow3j"]
 [ext_resource type="Resource" uid="uid://bqtqpwhajiuku" path="res://EnemyResources/floppy_fish.tres" id="8_j5wjh"]
 [ext_resource type="Texture2D" uid="uid://cdb4e30x4kf0m" path="res://ProgessBarTextures/Under.png" id="8_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://c7l48cpw3uuqo" path="res://ProgessBarTextures/Experience.png" id="8_vef74"]
 [ext_resource type="Texture2D" uid="uid://djdo6dqvdgjly" path="res://ProgessBarTextures/Health.png" id="9_hve3p"]
 [ext_resource type="Texture2D" uid="uid://bfojewvgkawy0" path="res://ProgessBarTextures/Speed.png" id="9_iotsf"]
+[ext_resource type="PackedScene" uid="uid://46ds810qcmcv" path="res://cut_scene.tscn" id="12_iotsf"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
 seed = 64050848
@@ -18,6 +20,7 @@ fractal_type = 2
 fractal_weighted_strength = 1.0
 
 [node name="Game" type="Node"]
+script = ExtResource("1_lc2xo")
 
 [node name="TileLayerManager" type="Node2D" parent="."]
 script = ExtResource("2_fc0e3")
@@ -29,15 +32,9 @@ script = ExtResource("7_eow3j")
 enemy_template = ExtResource("6_eow3j")
 floppy_fish = ExtResource("8_j5wjh")
 shark = ExtResource("5_mfdv2")
+octo = ExtResource("6_iotsf")
 
 [node name="Player" parent="." instance=ExtResource("3_feb5d")]
-
-[node name="Label" type="Label" parent="Player"]
-offset_left = -246.0
-offset_top = -306.0
-offset_right = -157.0
-offset_bottom = -283.0
-script = ExtResource("5_7jktm")
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 
@@ -47,6 +44,7 @@ offset_left = -253.0
 offset_top = -395.0
 offset_right = 256.0
 offset_bottom = -379.0
+max_value = 20.0
 nine_patch_stretch = true
 stretch_margin_left = 6
 stretch_margin_top = 6
@@ -57,10 +55,10 @@ texture_progress = ExtResource("8_vef74")
 
 [node name="LevelLabel" type="Label" parent="Player/ExperienceBar"]
 layout_mode = 0
-offset_left = 204.0
-offset_top = 18.0
-offset_right = 329.0
-offset_bottom = 53.0
+offset_left = 17.0
+offset_top = 19.0
+offset_right = 142.0
+offset_bottom = 54.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -104,3 +102,10 @@ stretch_margin_right = 6
 stretch_margin_bottom = 6
 texture_under = ExtResource("8_mfdv2")
 texture_progress = ExtResource("9_hve3p")
+
+[node name="CutScene" parent="Player" instance=ExtResource("12_iotsf")]
+visible = false
+offset_left = -331.0
+offset_top = 275.0
+offset_right = -195.0
+offset_bottom = 322.0

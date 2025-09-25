@@ -1,2 +1,3 @@
 extends Node
-@export var level = 0
+@export var level := 0
+@export var tutorial := true

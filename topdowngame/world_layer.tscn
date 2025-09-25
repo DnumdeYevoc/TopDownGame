@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://sgvg830h18qa"]
 
 [ext_resource type="Shader" path="res://game.gdshader" id="1_tbd5q"]
-[ext_resource type="Texture2D" uid="uid://cqsa6pofc53r" path="res://Grass.png" id="2_iik26"]
+[ext_resource type="Texture2D" uid="uid://cqsa6pofc53r" path="res://Tiles/Grass.png" id="2_iik26"]
 [ext_resource type="Script" uid="uid://goamy4p62v6g" path="res://tile_map_layer.gd" id="3_jwyeq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2wbt3"]

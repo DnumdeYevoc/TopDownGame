@@ -44,7 +44,7 @@ func update_tiles(size):
 				#if its not already loaded
 				if get_cell_source_id(pos) != 1:
 						alt = round(noise.get_noise_2dv(pos+position/32)*100.0)
-						if alt > threshold + floor((global_position.y/32+y)*0.01):
+						if alt > threshold + floor((global_position.y/32+y)*0.1):
 							if get_cell_atlas_coords(pos) != Vector2i(1,2):
 								#autotiling
 								var surrounding : Array[int] = [(round(noise.get_noise_2dv(pos+Vector2(0,1)+position/32)*100.0)), 
@@ -52,13 +52,13 @@ func update_tiles(size):
 															(round(noise.get_noise_2dv(pos+Vector2(1,0)+position/32)*100.0)), 
 															(round(noise.get_noise_2dv(pos+Vector2(-1,0)+position/32)*100.0))]
 								atlas = Vector2(2,1)
-								if surrounding[0]>threshold+ floor((global_position.y/32+y+1)*0.01):
+								if surrounding[0]>threshold+ floor((global_position.y/32+y+1)*0.1):
 									atlas.y += 2
-								if surrounding[1]>threshold + floor((global_position.y/32+y-1)*0.01):
+								if surrounding[1]>threshold + floor((global_position.y/32+y-1)*0.1):
 									atlas.y += -1
-								if surrounding[2]>threshold + floor((global_position.y/32+y)*0.01):
+								if surrounding[2]>threshold + floor((global_position.y/32+y)*0.1):
 									atlas.x += 1
-								if surrounding[3]>threshold + floor((global_position.y/32+y)*0.01):
+								if surrounding[3]>threshold + floor((global_position.y/32+y)*0.1):
 									atlas.x += -2
 							else:
 								atlas = get_cell_atlas_coords(pos)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://cifhmyn2tleao"]
 
-[ext_resource type="Texture2D" uid="uid://cqsa6pofc53r" path="res://Grass.png" id="2_c3an2"]
-[ext_resource type="Texture2D" uid="uid://ckprd7aaa463" path="res://beach.png" id="2_uuaxm"]
+[ext_resource type="Texture2D" uid="uid://cqsa6pofc53r" path="res://Tiles/Grass.png" id="2_c3an2"]
+[ext_resource type="Texture2D" uid="uid://ckprd7aaa463" path="res://Tiles/beach.png" id="2_uuaxm"]
 [ext_resource type="Script" uid="uid://goamy4p62v6g" path="res://tile_map_layer.gd" id="3_vjcy3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lcn6m"]
