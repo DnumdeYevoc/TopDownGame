@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export var speed : int = 2000
 @export var walking_speed := 2000
 @export var acc = 500
+@export var healing = 0.1
 var speed_cap = 500000
 @export var max_health = 100
 @onready var trail: Line2D = $Trail
@@ -21,6 +22,7 @@ var speed_cap = 500000
 
 var level_up_animation := false
 var decelerate := false
+@export var negative := false
 var d = Vector2(0,0)
 
 var dead := false
@@ -48,6 +50,9 @@ func _input(event: InputEvent) -> void:
 			Engine.time_scale = 1
 		
 func _physics_process(delta: float) -> void:
+
+	#healing 
+	health_bar.value += delta*healing
 	#movement
 	d=(get_global_mouse_position()-global_position).normalized()
 	#deceleration
@@ -55,7 +60,16 @@ func _physics_process(delta: float) -> void:
 		if speed<= walking_speed and speed>=0:
 			speed = -walking_speed
 	if Input.is_action_pressed("Right_Click") or decelerate == true:
-			if speed> walking_speed:
+		if negative:
+			if speed: #turn lf for negative
+				if decelerate:
+					speed -=6*acc*Engine.time_scale
+				else:
+					speed -=3*acc*Engine.time_scale
+			else:
+				speed = walking_speed
+		else:
+			if speed> walking_speed: #turn lf for negative
 				if decelerate:
 					speed -=6*acc*Engine.time_scale
 				else:
@@ -165,6 +179,7 @@ func level_up():
 		trail_damage_factor+=0.05
 		health_bar.max_value += 10
 		heal(10)
+		healing += 0.05
 		update_health_bar()
 		health_bar.visible =true
 

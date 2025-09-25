@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 				var timer= get_tree().create_timer(2)
 				await timer.timeout
 				await cut_scene.speak("HIT SHIFT KEY",compass_texture , 3, 0.5)
-				await Input.is_action_just_pressed("KEY_SHIFT")
+				await Input.is_action_just_pressed("KEY_SHIFT") == true
 				await cut_scene.speak("...woah...",player_texture , 3, 0.5)
 				var timer2= get_tree().create_timer(3)
 				await timer2.timeout

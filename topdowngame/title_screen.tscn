@@ -28,7 +28,7 @@ texture = ExtResource("3_jqemp")
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(84, 453)
-points = PackedVector2Array(-90, -274, -59, -129, -87, -60, -27, 153, -65, 215, 103, 313)
+points = PackedVector2Array(-104, -285, -59, -129, -87, -60, -27, 153, -65, 215, 103, 313)
 width = 30.0
 width_curve = SubResource("Curve_rhgbh")
 default_color = Color(1, 1, 0, 1)
@@ -49,4 +49,15 @@ scale = Vector2(8, 8)
 texture_normal = ExtResource("5_8vmu4")
 texture_hover = ExtResource("6_xfn3p")
 
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 68.0
+offset_top = 401.0
+offset_right = 210.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 25
+button_pressed = true
+text = "Tutorial"
+flat = true
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

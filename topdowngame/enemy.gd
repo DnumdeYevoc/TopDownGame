@@ -6,6 +6,7 @@ var boids_seen := []
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var health_bar: TextureProgressBar = $HealthBar
 
+
 @onready var experience_scene := preload("res://experience.tscn")
 @export var clumping : int 
 @export var crowding : int 
@@ -55,6 +56,7 @@ func _ready() -> void:
 	else:
 		queue_free()
 func _physics_process(delta: float) -> void:
+
 	var dis = player.global_position-global_position
 	health_bar.value += delta*heal_factor
 	if player != null:
@@ -112,6 +114,8 @@ func die():
 	experience.position = position
 	experience.value = enemy_type.experience_value
 	add_sibling(experience)
+	if enemy_type == load("res://EnemyResources/octo.tres"):
+		player.negative = true
 	queue_free()
 
 func damage_player():
