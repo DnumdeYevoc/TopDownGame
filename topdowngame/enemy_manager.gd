@@ -20,7 +20,9 @@ func _ready() -> void:
 	for index in enemy_type_amount:
 		var timer := timer_scene.instantiate()
 		add_child(timer)
+	
 	children= get_children()
+	
 func _process(delta: float) -> void:
 	spawn_distance = sqrt(sqrt(player.speed)*300)
 	if spawn_distance< 1000:
@@ -38,10 +40,9 @@ func _process(delta: float) -> void:
 func spawn(enemy_type, enemy_index) -> void:
 	if enemy_type != null:
 		if children[enemy_index].timer_done:
-			var max_spawn_amount = enemy_type.max_spawn_amount
 			var spawn_amount = random.randi_range(enemy_type.min_spawn_amount, enemy_type.max_spawn_amount)
 			for n in spawn_amount:
-				var angle = deg_to_rad((180/max_spawn_amount *(n+0.5))-90)
+				var angle = deg_to_rad((180/enemy_type.max_spawn_amount *(n+0.5))-90)
 				var enemy_position =player.global_position+ Vector2(sin(angle)*spawn_distance, cos(angle)*spawn_distance)
 				if enemy_position.y >= enemy_type.min_y:
 					var enemy = enemy_scene.instantiate()
@@ -49,5 +50,7 @@ func spawn(enemy_type, enemy_index) -> void:
 					enemy.enemy_type = enemy_type
 					enemy.player = player
 					children[enemy_index].add_child(enemy)
+			enemy_type.max_spawn_amount += 1*enemy_type.spawn_increase_rate
+			enemy_type.min_spawn_amount += 1*enemy_type.spawn_increase_rate
 			children[enemy_index].start(enemy_type.spawn_time)
 			children[enemy_index].timer_done = false

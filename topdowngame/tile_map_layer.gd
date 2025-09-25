@@ -13,18 +13,18 @@ var alt : float
 var tileset_id :int = 0
 var layer_amount : int
 var threshold_rate : int
-var water_level :int = 3
+var water_level :int = 8
 func _ready() -> void:
 	if height_index<water_level:
 		modulate.a *= 0.05
 		tileset_id = 2
 	elif height_index == water_level:
 		tileset_id = 1
-		modulate *= (float(height_index)+13.0)/20.0
+		modulate *= (float(height_index)+15.0)/20.0
 		modulate.a = 1
 	else:
 		tileset_id = 0
-		modulate *= (float(height_index)+12.0)/20.0
+		modulate *= (float(height_index)+10)/20.0
 		modulate.a = 1
 	update_tiles(chunk_size)
 
@@ -44,7 +44,7 @@ func update_tiles(size):
 				#if its not already loaded
 				if get_cell_source_id(pos) != 1:
 						alt = round(noise.get_noise_2dv(pos+position/32)*100.0)
-						if alt > threshold + floor((global_position.y/32+y)*0.1):
+						if alt > threshold + floor((global_position.y/32+y-1500)*0.1):
 							if get_cell_atlas_coords(pos) != Vector2i(1,2):
 								#autotiling
 								var surrounding : Array[int] = [(round(noise.get_noise_2dv(pos+Vector2(0,1)+position/32)*100.0)), 
@@ -52,13 +52,13 @@ func update_tiles(size):
 															(round(noise.get_noise_2dv(pos+Vector2(1,0)+position/32)*100.0)), 
 															(round(noise.get_noise_2dv(pos+Vector2(-1,0)+position/32)*100.0))]
 								atlas = Vector2(2,1)
-								if surrounding[0]>threshold+ floor((global_position.y/32+y+1)*0.1):
+								if surrounding[0]>threshold+ floor((global_position.y/32+y-1500+1)*0.1):
 									atlas.y += 2
-								if surrounding[1]>threshold + floor((global_position.y/32+y-1)*0.1):
+								if surrounding[1]>threshold + floor((global_position.y/32+y-1500-1)*0.1):
 									atlas.y += -1
-								if surrounding[2]>threshold + floor((global_position.y/32+y)*0.1):
+								if surrounding[2]>threshold + floor((global_position.y/32+y-1500)*0.1):
 									atlas.x += 1
-								if surrounding[3]>threshold + floor((global_position.y/32+y)*0.1):
+								if surrounding[3]>threshold + floor((global_position.y/32+y-1500)*0.1):
 									atlas.x += -2
 							else:
 								atlas = get_cell_atlas_coords(pos)

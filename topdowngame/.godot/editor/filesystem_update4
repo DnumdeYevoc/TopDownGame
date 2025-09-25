@@ -10,3 +10,15 @@ res://enemy.tscn
 res://timer.tscn
 res://experience.tscn
 res://cut_scene.tscn
+res://player.gd
+res://enemy_manager.gd
+res://EnemyResources/enemy_template.gd
+res://tile_map_layer.gd
+res://tile_layer_manager.gd
+res://game.gd
+res://experience.gd
+res://title_screen.gd
+res://cut_scene.gd
+res://GLOBALS.gd
+res://prologue.gd
+res://prologue.tscn

@@ -1,7 +1,6 @@
 extends ColorRect
 
 @onready var person: Sprite2D = $Speaker
-
 @onready var label: Label = $Label
 
 func speak(speech, speaker, time, scal):

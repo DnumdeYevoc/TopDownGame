@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://gsoedb8m3t4"]
+
+[ext_resource type="Script" uid="uid://cbk1n3om45mgv" path="res://prologue.gd" id="1_2o1rx"]
+[ext_resource type="PackedScene" uid="uid://46ds810qcmcv" path="res://cut_scene.tscn" id="2_orjk5"]
+
+[node name="Prologue" type="Node2D"]
+script = ExtResource("1_2o1rx")
+
+[node name="CutScene" parent="." instance=ExtResource("2_orjk5")]
+offset_left = -11.0
+offset_top = 741.0
+offset_right = 125.0
+offset_bottom = 756.0

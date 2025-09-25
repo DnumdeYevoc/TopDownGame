@@ -105,7 +105,7 @@ texture_progress = ExtResource("9_hve3p")
 
 [node name="CutScene" parent="Player" instance=ExtResource("12_iotsf")]
 visible = false
-offset_left = -331.0
-offset_top = 275.0
-offset_right = -195.0
-offset_bottom = 322.0
+offset_left = -278.0
+offset_top = 341.0
+offset_right = -142.0
+offset_bottom = 388.0

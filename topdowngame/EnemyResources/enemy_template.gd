@@ -18,8 +18,9 @@ extends Resource
 @export var spawn_time :int 
 @export var attack_time :float
 
-@export var max_spawn_amount : int
-@export var min_spawn_amount :int
+@export var max_spawn_amount : float
+@export var min_spawn_amount :float
+@export var spawn_increase_rate :float
 
 @export var can_rotate : bool 
 @export var clumping : int 

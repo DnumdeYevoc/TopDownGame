@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var walking_speed := 2000
 @export var acc = 500
 @export var healing = 0.1
-var speed_cap = 500000
+var speed_cap :int
 @export var max_health = 100
 @onready var trail: Line2D = $Trail
 @onready var trail_collision: Area2D = $TrailCollision
@@ -34,7 +34,7 @@ var claw_damage := 10
 var counter := 0
 func _ready() -> void:
 	
-	speed_cap = 6000
+	speed_cap = 12000
 	speed_bar.max_value = speed_cap
 	@warning_ignore("integer_division")
 	speed_bar.size.x = speed_cap/1000
@@ -166,8 +166,7 @@ func level_up():
 		level_label.text = "Level " + str(GLOBALS.level)
 		
 		experience_bar.value -= experience_bar.max_value
-		experience_bar.max_value += 25*GLOBALS.level
-
+		experience_bar.max_value += 5*GLOBALS.level
 			
 		#Upgrades
 		speed_cap += 5000*GLOBALS.level
@@ -212,6 +211,7 @@ func update_health_bar():
 
 func die():
 	dead = true
+	
 	queue_free()
 	get_tree().reload_current_scene()
 
