@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 			if previous_point.distance_to(point)>10:
 				add_point(point)
 				previous_point = point 
+		
 		if previous_point.distance_to(point)>50:
 			point.x += random.randi_range(-10, 10)
 			point.y += random.randi_range(-10, 10)

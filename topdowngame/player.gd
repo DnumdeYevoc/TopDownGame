@@ -2,7 +2,7 @@ extends CharacterBody2D
 @export var speed : int = 2000
 @export var walking_speed := 2000
 @export var acc = 500
-@export var healing = 0.1
+@export var healing = 80.0
 var speed_cap :int
 @export var max_health = 100
 @onready var trail: Line2D = $Trail
@@ -32,6 +32,7 @@ var trail_damage_factor :=1
 var claw_damage := 10
 
 var counter := 0
+var healing_counter: =0
 func _ready() -> void:
 	
 	speed_cap = 12000
@@ -50,9 +51,13 @@ func _input(event: InputEvent) -> void:
 			Engine.time_scale = 1
 		
 func _physics_process(delta: float) -> void:
-
-	#healing 
-	health_bar.value += delta*healing
+	#healing
+	healing_counter +=1
+	if healing_counter >=120:
+		health_bar.value += delta*healing
+		update_health_bar()
+		healing_counter =0
+	
 	#movement
 	d=(get_global_mouse_position()-global_position).normalized()
 	#deceleration
@@ -137,6 +142,9 @@ func _physics_process(delta: float) -> void:
 			sprite.play("UpSlow")
 		
 	sprite.speed_scale = clamp(sqrt(abs(speed))/100, 0.5, 10)
+	#damage animation
+	if sprite.modulate.r > 1:
+		sprite.modulate.r -=1
 	#makeshift level up animation
 
 	if level_up_animation:
@@ -153,9 +161,8 @@ func _physics_process(delta: float) -> void:
 				level_up_animation = false
 				counter = 0
 				update_health_bar()
-				
-func experience(value):
 	
+func experience(value):
 	experience_bar.value += value
 	if experience_bar.value >= experience_bar.max_value:
 		level_up()
@@ -178,7 +185,7 @@ func level_up():
 		trail_damage_factor+=0.05
 		health_bar.max_value += 10
 		heal(10)
-		healing += 0.05
+		healing += 5
 		update_health_bar()
 		health_bar.visible =true
 
@@ -193,6 +200,7 @@ func _on_trail_collision_area_entered(area: Area2D) -> void:
 
 func take_damage(damage):
 	health_bar.value -=damage
+	sprite.modulate.r = 10
 	update_health_bar()
 	if health_bar.value <=0:
 		die()
@@ -211,7 +219,6 @@ func update_health_bar():
 
 func die():
 	dead = true
-	
 	queue_free()
 	get_tree().reload_current_scene()
 

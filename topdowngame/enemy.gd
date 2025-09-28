@@ -17,7 +17,7 @@ var heal_factor : int
 var blood_heal_factor : int 
 var timer_done = true
 var player_touching := false
-var despawn_range = 10000
+var despawn_range = 5000
 var tick_counter :=0
 func _ready() -> void:
 	randomize()
@@ -41,7 +41,6 @@ func _ready() -> void:
 		health_bar.size.y = av_size/10
 		heal_factor = enemy_type.heal_factor
 		blood_heal_factor = enemy_type.blood_heal_factor
-
 		if health_bar.max_value > 200:
 			health_bar.size.x =  health_bar.max_value/2
 			health_bar.size.y = 32
@@ -56,11 +55,10 @@ func _ready() -> void:
 	else:
 		queue_free()
 func _physics_process(delta: float) -> void:
-
 	var dis = player.global_position-global_position
 	health_bar.value += delta*heal_factor
 	if player != null:
-		if tick_counter == 1:#make this fish layer variable
+		if tick_counter >= 5:
 			vel =(dis).normalized()
 			boids()
 			tick_counter = 0

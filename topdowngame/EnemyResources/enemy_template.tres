@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://ef3ecd6vk814"]
 
 [ext_resource type="Script" uid="uid://b5jhkas1msn10" path="res://EnemyResources/enemy_template.gd" id="1_yumcj"]
-[ext_resource type="Texture2D" uid="uid://cedj1xfae4cwn" path="res://icon.svg" id="2_b4ygo"]
+[ext_resource type="Texture2D" uid="uid://odqvgpfkkx52" path="res://icon.svg" id="2_b4ygo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b4ygo"]
 animations = [{

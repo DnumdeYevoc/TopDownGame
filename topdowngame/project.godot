@@ -25,6 +25,10 @@ window/size/viewport_width=540
 window/size/viewport_height=810
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/disable_vsync=true
+
 [global_group]
 
 enemies=""
