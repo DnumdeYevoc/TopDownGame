@@ -1,7 +1,7 @@
+ColorRect
 CheckButton
 Line2D
 Sprite2D
-ColorRect
 Label
 VBoxContainer
 TextureProgressBar
@@ -12,4 +12,3 @@ AnimatedSprite2D
 StaticBody2D
 Timer
 CharacterBody2D
-VisibleOnScreenNotifier2D

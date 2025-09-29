@@ -7,7 +7,7 @@ func _process(delta: float) -> void:
 	scale = Vector2(n,n)
 
 	var d = (player.global_position - global_position).normalized()
-	global_position += d*delta*Engine.time_scale*abs(player.global_position - global_position)*(player.speed/1000)
+	global_position += d*delta*Engine.time_scale*abs(player.global_position - global_position)*100
 	
 	if player.global_position.distance_to(global_position)<20:
 		player.experience(value)

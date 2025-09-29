@@ -46,4 +46,4 @@ clumping = 1
 crowding = 0
 experience_value = 1000000
 min_y = 15000
-level_unlock = 0
+level_unlock = 15

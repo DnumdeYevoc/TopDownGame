@@ -51,6 +51,13 @@ func _input(event: InputEvent) -> void:
 			Engine.time_scale = 1
 		
 func _physics_process(delta: float) -> void:
+	#back in time reset
+	if speed <-1000000:
+		if GLOBALS.story:
+			get_tree().change_scene_to_file("res://Story Scenes/backintime.tscn")
+		else:
+			get_tree().reload_current_scene()
+	
 	#healing
 	healing_counter +=1
 	if healing_counter >=120:

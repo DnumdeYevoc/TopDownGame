@@ -12,6 +12,8 @@ res://cut_scene.tscn
 res://game.tscn
 res://prologue.tscn
 res://player.gd
-res://enemy.gd
-res://trail.gd
-res://EnemyResources/enemy_template.gd
+res://Story Scenes/backintime.tscn
+res://Story Scenes/backintime.gd
+res://title_screen.gd
+res://Story Scenes/prologue.tscn
+res://experience.gd
